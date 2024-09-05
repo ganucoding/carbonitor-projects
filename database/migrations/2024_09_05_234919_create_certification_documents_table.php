@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('certification_documents', function (Blueprint $table) {
             $table->id();
             $table->foreignId('project_id')->constrained()->onDelete('cascade');
+            $table->string('review_type')->nullable();
+            $table->string('file_name')->nullable();
             $table->string('file_path');
             $table->timestamps();
         });
