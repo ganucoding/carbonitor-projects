@@ -2,10 +2,15 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\Country;
+use App\Enums\ProjectStatus;
+use App\Enums\ProjectType;
 use App\Filament\Resources\ProjectResource\Pages;
 use App\Filament\Resources\ProjectResource\RelationManagers;
 use App\Models\Project;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -21,21 +26,45 @@ class ProjectResource extends Resource
 
     public static function form(Form $form): Form
     {
+        $formComponents = [
+            TextInput::make('name')
+                ->label('Project Name')
+                ->required()
+                ->maxLength(255),
+
+            Select::make('status')
+                ->label('Project Status')
+                ->options(
+                    collect(ProjectStatus::cases())->mapWithKeys(fn($case) => [
+                        $case->value => $case->label(),
+                    ])->toArray()
+                )
+                ->searchable()
+                ->placeholder('Select Status'),
+
+            Select::make('type')
+                ->label('Project Type')
+                ->options(
+                    collect(ProjectType::cases())->mapWithKeys(fn($case) => [
+                        $case->value => $case->label(),
+                    ])->toArray()
+                )
+                ->searchable()
+                ->placeholder('Select Type'),
+
+            Select::make('country')
+                ->label('Country')
+                ->options(
+                    collect(Country::cases())->mapWithKeys(fn($case) => [
+                        $case->value => $case->label(),
+                    ])->toArray()
+                )
+                ->searchable()
+                ->placeholder('Select Country'),
+        ];
+
         return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('status')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('type')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('country')
-                    ->required()
-                    ->maxLength(255),
-            ]);
+            ->schema([...$formComponents]);
     }
 
     public static function table(Table $table): Table
