@@ -16,8 +16,8 @@ class Project extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function files()
+    public function certificationDocuments()
     {
-        return $this->hasMany(File::class);
+        return $this->hasMany(CertificationDocuments::class);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\ProjectResource\RelationManagers;
 
-use App\Filament\Resources\FileResource;
+use App\Filament\Resources\CertificationDocumentsResource;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -11,21 +11,21 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class FilesRelationManager extends RelationManager
+class CertificationDocumentsRelationManager extends RelationManager
 {
-    protected static string $relationship = 'files';
+    protected static string $relationship = 'certificationDocuments';
 
     public function form(Form $form): Form
     {
-        return FileResource::form($form);
+        return CertificationDocumentsResource::form($form);
     }
 
     public function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('file_name')
+            ->recordTitleAttribute('file_path')
             ->columns([
-                Tables\Columns\TextColumn::make('file_name'),
+                Tables\Columns\TextColumn::make('file_path'),
             ])
             ->filters([
                 //

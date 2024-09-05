@@ -7,7 +7,7 @@ use App\Enums\ProjectStatus;
 use App\Enums\ProjectType;
 use App\Filament\Resources\ProjectResource\Pages;
 use App\Filament\Resources\ProjectResource\RelationManagers;
-use App\Filament\Resources\ProjectResource\RelationManagers\FilesRelationManager;
+use App\Filament\Resources\ProjectResource\RelationManagers\CertificationDocumentsRelationManager;
 use App\Models\Project;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
@@ -114,7 +114,7 @@ class ProjectResource extends Resource
     public static function getRelations(): array
     {
         return [
-            FilesRelationManager::class,
+            CertificationDocumentsRelationManager::class,
         ];
     }
 

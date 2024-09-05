@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\FileResource\Pages;
-use App\Filament\Resources\FileResource\RelationManagers;
-use App\Models\File;
+use App\Filament\Resources\CertificationDocumentsResource\Pages;
+use App\Filament\Resources\CertificationDocumentsResource\RelationManagers;
+use App\Models\CertificationDocuments;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,10 +12,11 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
-class FileResource extends Resource
+class CertificationDocumentsResource extends Resource
 {
-    protected static ?string $model = File::class;
+    protected static ?string $model = CertificationDocuments::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -23,11 +24,15 @@ class FileResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\FileUpload::make('file')
+                Forms\Components\FileUpload::make('file_path')
                     ->label('Upload File')
-                    ->disk('public') // or specify another disk if needed
-                    ->directory('uploads') // directory within the storage disk
-                    ->required(),
+                    ->disk('public') // Or specify another disk if needed
+                    ->directory('certification-documents') // Directory within the storage disk
+                    ->required()
+                    ->getUploadedFileNameForStorageUsing(
+                        fn(TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
+                            ->prepend(time() . '-carbonitor-'),
+                    ),
             ]);
     }
 
@@ -39,10 +44,6 @@ class FileResource extends Resource
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('file_path')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('file_name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('file_type')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -76,9 +77,9 @@ class FileResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListFiles::route('/'),
-            'create' => Pages\CreateFile::route('/create'),
-            'edit' => Pages\EditFile::route('/{record}/edit'),
+            'index' => Pages\ListCertificationDocuments::route('/'),
+            'create' => Pages\CreateCertificationDocuments::route('/create'),
+            'edit' => Pages\EditCertificationDocuments::route('/{record}/edit'),
         ];
     }
 }
