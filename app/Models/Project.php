@@ -11,13 +11,18 @@ class Project extends Model
 
     protected $fillable = ['unique_id', 'name', 'status', 'type', 'country'];
 
-    public function comments()
+    public function projectDetail()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasOne(ProjectDetail::class);
     }
 
     public function certificationDocuments()
     {
         return $this->hasMany(CertificationDocuments::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }
