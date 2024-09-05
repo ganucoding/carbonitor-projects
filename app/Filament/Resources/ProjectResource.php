@@ -27,40 +27,47 @@ class ProjectResource extends Resource
     public static function form(Form $form): Form
     {
         $formComponents = [
+            TextInput::make('unique_id')
+                ->label('Unique ID')
+                ->placeholder('Enter Unique ID')
+                ->nullable()
+                ->maxLength(255),
+
             TextInput::make('name')
                 ->label('Project Name')
+                ->placeholder('Enter Project Name')
                 ->required()
                 ->maxLength(255),
 
             Select::make('status')
                 ->label('Project Status')
+                ->placeholder('Select Status')
                 ->options(
                     collect(ProjectStatus::cases())->mapWithKeys(fn($case) => [
                         $case->value => $case->label(),
                     ])->toArray()
                 )
-                ->searchable()
-                ->placeholder('Select Status'),
+                ->searchable(),
 
             Select::make('type')
                 ->label('Project Type')
+                ->placeholder('Select Type')
                 ->options(
                     collect(ProjectType::cases())->mapWithKeys(fn($case) => [
                         $case->value => $case->label(),
                     ])->toArray()
                 )
-                ->searchable()
-                ->placeholder('Select Type'),
+                ->searchable(),
 
             Select::make('country')
                 ->label('Country')
+                ->placeholder('Select Country')
                 ->options(
                     collect(Country::cases())->mapWithKeys(fn($case) => [
                         $case->value => $case->label(),
                     ])->toArray()
                 )
-                ->searchable()
-                ->placeholder('Select Country'),
+                ->searchable(),
         ];
 
         return $form
@@ -71,6 +78,8 @@ class ProjectResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('unique_id')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status')

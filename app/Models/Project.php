@@ -9,7 +9,7 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'status', 'type', 'country'];
+    protected $fillable = ['unique_id', 'name', 'status', 'type', 'country'];
 
     public function comments()
     {
