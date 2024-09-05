@@ -23,18 +23,11 @@ class FileResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('project_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('file_path')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('file_name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('file_type')
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\FileUpload::make('file')
+                    ->label('Upload File')
+                    ->disk('public') // or specify another disk if needed
+                    ->directory('uploads') // directory within the storage disk
+                    ->required(),
             ]);
     }
 
