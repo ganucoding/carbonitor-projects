@@ -26,6 +26,11 @@ class Project extends Model
         return $this->hasMany(CertificationDocuments::class);
     }
 
+    public function retirements()
+    {
+        return $this->hasMany(Retirement::class);
+    }
+
     public function comments()
     {
         return $this->hasMany(Comment::class);
