@@ -8,6 +8,8 @@ use App\Enums\ProjectType;
 use App\Filament\Resources\ProjectResource\Pages;
 use App\Filament\Resources\ProjectResource\RelationManagers;
 use App\Filament\Resources\ProjectResource\RelationManagers\CertificationDocumentsRelationManager;
+use App\Filament\Resources\ProjectResource\RelationManagers\IssuancesRelationManager;
+use App\Filament\Resources\ProjectResource\RelationManagers\RetirementsRelationManager;
 use App\Models\Project;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
@@ -114,7 +116,9 @@ class ProjectResource extends Resource
     public static function getRelations(): array
     {
         return [
+            IssuancesRelationManager::class,
             CertificationDocumentsRelationManager::class,
+            RetirementsRelationManager::class,
         ];
     }
 
