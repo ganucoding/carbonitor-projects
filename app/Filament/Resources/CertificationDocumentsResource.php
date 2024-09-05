@@ -40,8 +40,8 @@ class CertificationDocumentsResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('project_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('project.name')
+                    ->label('Project Name')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('file_path')
                     ->searchable(),
@@ -81,5 +81,10 @@ class CertificationDocumentsResource extends Resource
             'create' => Pages\CreateCertificationDocuments::route('/create'),
             'edit' => Pages\EditCertificationDocuments::route('/{record}/edit'),
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
     }
 }
