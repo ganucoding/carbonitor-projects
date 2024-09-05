@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name', 'status', 'type', 'country'];
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

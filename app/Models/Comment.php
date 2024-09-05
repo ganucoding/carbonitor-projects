@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['project_id', 'username', 'email', 'comment'];
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
 }
