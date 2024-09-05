@@ -23,7 +23,18 @@ class FileResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('project_id')
+                    ->required()
+                    ->numeric(),
+                Forms\Components\TextInput::make('file_path')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('file_name')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('file_type')
+                    ->required()
+                    ->maxLength(255),
             ]);
     }
 
@@ -31,7 +42,23 @@ class FileResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('project_id')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('file_path')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('file_name')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('file_type')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
