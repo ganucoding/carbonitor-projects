@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
+            $table->string('unique_id')->nullable();
             $table->string('name');
             $table->string('status')->nullable();
             $table->string('type')->nullable();
