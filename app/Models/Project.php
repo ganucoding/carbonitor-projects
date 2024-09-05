@@ -16,6 +16,11 @@ class Project extends Model
         return $this->hasOne(ProjectDetail::class);
     }
 
+    public function issuances()
+    {
+        return $this->hasMany(Issuance::class);
+    }
+
     public function certificationDocuments()
     {
         return $this->hasMany(CertificationDocuments::class);
