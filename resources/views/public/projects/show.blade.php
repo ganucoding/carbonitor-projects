@@ -6,31 +6,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
     <style>
-        .project-header {
+        body {
+            background-color: #f0f2f5;
+        }
+
+        .navbar {
             background-color: #004e60;
+        }
+
+        .navbar-brand {
             color: #fff;
-            padding: 20px;
+            font-weight: bold;
+        }
+
+        .navbar-brand:hover {
+            color: #e1e1e1;
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, #004e60, #005a6f);
+            color: #fff;
+            padding: 30px;
+            border-radius: 8px;
             margin-bottom: 20px;
         }
 
         .project-header h2 {
-            font-size: 1.5rem;
-            margin-bottom: 0;
+            font-size: 1.75rem;
+            margin-bottom: 10px;
         }
 
         .project-info {
-            background-color: #f8f9fa;
-            padding: 15px;
-            border-radius: 5px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .project-info table {
             margin-bottom: 0;
         }
 
+        .project-info th {
+            background-color: #f1f3f5;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        .project-info td {
+            padding: 10px;
+        }
+
         .table-responsive {
             margin-top: 20px;
+        }
+
+        .table-bordered th,
+        .table-bordered td {
+            vertical-align: middle;
+        }
+
+        .table-bordered thead th {
+            background-color: #f1f3f5;
         }
 
         .actions-sticky {
@@ -38,15 +77,35 @@
             right: 0;
             background-color: #fff;
         }
+
+        .card {
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #004e60;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .text-muted {
+            color: #6c757d;
+        }
     </style>
 </head>
 
 <body>
 
     <!-- navbar -->
-    <nav class="navbar bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand fw-bold">Carbonitor</a>
+            <a class="navbar-brand" href="#">Carbonitor</a>
         </div>
     </nav>
 
@@ -110,16 +169,34 @@
             </div>
 
             <div class="col-md-4">
-                <p class="fw-bold">Description:</p>
-                <p>{!! nl2br(e($project->projectDetail->description)) !!}</p>
-                <p class="fw-bold">Summary:</p>
-                <p>{!! nl2br(e($project->projectDetail->summary)) !!}</p>
-                <p class="fw-bold">Sources:</p>
-                <p>{!! nl2br(e($project->projectDetail->sources)) !!}</p>
+                <div class="card">
+                    <div class="card-header">
+                        Description
+                    </div>
+                    <div class="card-body">
+                        <p>{!! nl2br(e($project->projectDetail->description)) !!}</p>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-header">
+                        Summary
+                    </div>
+                    <div class="card-body">
+                        <p>{!! nl2br(e($project->projectDetail->summary)) !!}</p>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-header">
+                        Sources
+                    </div>
+                    <div class="card-body">
+                        <p>{!! nl2br(e($project->projectDetail->sources)) !!}</p>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="table-responsive">
+        <div class="table-responsive mt-4">
             <h5>Issuance List</h5>
             <table class="table table-bordered">
                 <thead>
