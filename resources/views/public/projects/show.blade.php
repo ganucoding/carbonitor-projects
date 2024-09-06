@@ -273,7 +273,9 @@
         </div>
 
         <div class="mt-4">
-            <a href="{{-- {{ url($project->certification_docs_url) }} --}}" class="btn">View Certification Documents</a>
+            <a href="{{ route('projects.show', $project) }}" class="btn" target="_blank" rel="noopener noreferrer">
+                View Certification Documents
+            </a>
         </div>
 
         <div class="table-responsive mt-4">
