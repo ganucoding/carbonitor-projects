@@ -10,6 +10,7 @@ use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
@@ -49,7 +50,18 @@ class ProjectsListingLivewire extends Component implements HasForms, HasTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                // ...
+                SelectFilter::make('projectStatus')
+                    ->relationship('projectStatus', 'name')
+                    ->preload()
+                    ->multiple(),
+                SelectFilter::make('projectType')
+                    ->relationship('projectType', 'name')
+                    ->preload()
+                    ->multiple(),
+                SelectFilter::make('country')
+                    ->relationship('country', 'name')
+                    ->preload()
+                    ->multiple(),
             ])
             ->actions([
                 ViewAction::make('view')
