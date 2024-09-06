@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ProjectStatusResource\Pages;
-use App\Filament\Resources\ProjectStatusResource\RelationManagers;
-use App\Models\ProjectStatus;
+use App\Filament\Resources\RetirementStatusResource\Pages;
+use App\Filament\Resources\RetirementStatusResource\RelationManagers;
+use App\Models\RetirementStatus;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,11 +13,11 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ProjectStatusResource extends Resource
+class RetirementStatusResource extends Resource
 {
-    protected static ?string $model = ProjectStatus::class;
+    protected static ?string $model = RetirementStatus::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-shield-check';
+    protected static ?string $navigationIcon = 'heroicon-o-document-check';
     protected static ?int $navigationSort = 2;
     public static function getNavigationBadge(): ?string
     {
@@ -77,9 +77,9 @@ class ProjectStatusResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListProjectStatuses::route('/'),
-            'create' => Pages\CreateProjectStatus::route('/create'),
-            'edit' => Pages\EditProjectStatus::route('/{record}/edit'),
+            'index' => Pages\ListRetirementStatuses::route('/'),
+            'create' => Pages\CreateRetirementStatus::route('/create'),
+            'edit' => Pages\EditRetirementStatus::route('/{record}/edit'),
         ];
     }
 }
