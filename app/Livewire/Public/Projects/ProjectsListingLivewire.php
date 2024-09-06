@@ -61,7 +61,8 @@ class ProjectsListingLivewire extends Component implements HasForms, HasTable
                 SelectFilter::make('country')
                     ->relationship('country', 'name')
                     ->preload()
-                    ->multiple(),
+                    ->multiple()
+                    ->searchable(),
             ])
             ->actions([
                 ViewAction::make('view')
