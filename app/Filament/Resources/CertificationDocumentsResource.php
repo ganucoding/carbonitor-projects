@@ -19,7 +19,7 @@ class CertificationDocumentsResource extends Resource
     protected static ?string $model = CertificationDocuments::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
-    protected static ?int $navigationSort = 20;
+    protected static ?int $navigationSort = 2;
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();
