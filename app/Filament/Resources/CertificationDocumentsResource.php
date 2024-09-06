@@ -18,7 +18,17 @@ class CertificationDocumentsResource extends Resource
 {
     protected static ?string $model = CertificationDocuments::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static ?int $navigationSort = 20;
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+    protected static ?string $navigationGroup = 'Extras';
 
     public static function form(Form $form): Form
     {
@@ -81,10 +91,5 @@ class CertificationDocumentsResource extends Resource
             'create' => Pages\CreateCertificationDocuments::route('/create'),
             'edit' => Pages\EditCertificationDocuments::route('/{record}/edit'),
         ];
-    }
-
-    public static function canCreate(): bool
-    {
-        return false;
     }
 }
