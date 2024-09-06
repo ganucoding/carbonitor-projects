@@ -111,19 +111,19 @@
                                 <table class="table table-borderless">
                                     <tr>
                                         <th>Project Developer</th>
-                                        <td>{{ $project->projectDetail->project_developer }}</td>
+                                        <td>{{ $project->projectDetail?->project_developer }}</td>
                                     </tr>
                                     <tr>
                                         <th>Methodology</th>
-                                        <td>{!! nl2br(e($project->projectDetail->methodology)) !!}</td>
+                                        <td>{!! nl2br(e($project->projectDetail?->methodology)) !!}</td>
                                     </tr>
                                     <tr>
                                         <th>Standards Version</th>
-                                        <td>{{ $project->projectDetail->standards_version }}</td>
+                                        <td>{{ $project->projectDetail?->standards_version }}</td>
                                     </tr>
                                     <tr>
                                         <th>Project Scale</th>
-                                        <td>{{ $project->projectDetail->project_scale }}</td>
+                                        <td>{{ $project->projectDetail?->project_scale }}</td>
                                     </tr>
                                 </table>
                             </div>
@@ -131,19 +131,20 @@
                                 <table class="table table-borderless">
                                     <tr>
                                         <th>Product</th>
-                                        <td>{{ $project->projectDetail->product }}</td>
+                                        <td>{{ $project->projectDetail?->product }}</td>
                                     </tr>
                                     <tr>
                                         <th>Crediting Period</th>
                                         <td>
-                                            {{ \Carbon\Carbon::parse($project->projectDetail->crediting_period_start)->format('M d, Y') }}
+                                            {{ \Carbon\Carbon::parse($project->projectDetail?->crediting_period_start)->format('M d, Y') }}
                                             ―
-                                            {{ \Carbon\Carbon::parse($project->projectDetail->crediting_period_end)->format('M d, Y') }}
+                                            {{ \Carbon\Carbon::parse($project->projectDetail?->crediting_period_end)->format('M d, Y') }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>Annual Estimated Credits</th>
-                                        <td>{{ number_format($project->projectDetail->annual_estimated_credits) }}</td>
+                                        <td>{{ number_format($project->projectDetail?->annual_estimated_credits) }}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th>Project Type</th>
@@ -162,7 +163,7 @@
                         Description
                     </div>
                     <div class="card-body">
-                        <p>{!! nl2br(e($project->projectDetail->description)) !!}</p>
+                        <p>{!! nl2br(e($project->projectDetail?->description)) !!}</p>
                     </div>
                 </div>
                 <div class="card mb-3">
@@ -170,7 +171,7 @@
                         Summary
                     </div>
                     <div class="card-body">
-                        <p>{!! nl2br(e($project->projectDetail->summary)) !!}</p>
+                        <p>{!! nl2br(e($project->projectDetail?->summary)) !!}</p>
                     </div>
                 </div>
                 <div class="card">
@@ -178,7 +179,7 @@
                         Sources
                     </div>
                     <div class="card-body">
-                        <p>{!! nl2br(e($project->projectDetail->sources)) !!}</p>
+                        <p>{!! nl2br(e($project->projectDetail?->sources)) !!}</p>
                     </div>
                 </div>
             </div>
