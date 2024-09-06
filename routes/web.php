@@ -6,11 +6,10 @@ use Illuminate\Support\Facades\Route;
 
 /* Laravel */
 
-Route::get('/', [ProjectController::class, 'index']);
-// Route::get('/projects-listing', [ProjectController::class, 'index']);
 Route::resource('projects', ProjectController::class)->only('show');
 
 /* Livewire */
+Route::get('/', ProjectsListingLivewire::class);
 Route::get('/projects-listing', ProjectsListingLivewire::class);
 
 /* Route::get('/', function () {
