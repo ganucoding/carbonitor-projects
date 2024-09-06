@@ -2,15 +2,15 @@
 
 namespace App\Filament\Resources;
 
-use App\Enums\Country;
-use App\Enums\ProjectStatus;
-use App\Enums\ProjectType;
 use App\Filament\Resources\ProjectResource\Pages;
 use App\Filament\Resources\ProjectResource\RelationManagers;
 use App\Filament\Resources\ProjectResource\RelationManagers\CertificationDocumentsRelationManager;
 use App\Filament\Resources\ProjectResource\RelationManagers\IssuancesRelationManager;
 use App\Filament\Resources\ProjectResource\RelationManagers\RetirementsRelationManager;
+use App\Models\Country;
 use App\Models\Project;
+use App\Models\ProjectStatus;
+use App\Models\ProjectType;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Section;
@@ -57,36 +57,24 @@ class ProjectResource extends Resource
                         ->maxLength(255)
                         ->columnSpan(['default' => 1, 'md' => 3]),
 
-                    Select::make('status')
+                    Select::make('project_status_id')
                         ->label(__('Project Status'))
                         ->placeholder(__('Select Status'))
-                        ->options(
-                            collect(ProjectStatus::cases())->mapWithKeys(fn($case) => [
-                                $case->value => $case->label(),
-                            ])->toArray()
-                        )
+                        ->options(ProjectStatus::all()->pluck('name', 'id'))
                         ->searchable()
                         ->columnSpan(['default' => 1, 'md' => 1]),
 
-                    Select::make('type')
+                    Select::make('project_type_id')
                         ->label(__('Project Type'))
                         ->placeholder(__('Select Type'))
-                        ->options(
-                            collect(ProjectType::cases())->mapWithKeys(fn($case) => [
-                                $case->value => $case->label(),
-                            ])->toArray()
-                        )
+                        ->options(ProjectType::all()->pluck('name', 'id'))
                         ->searchable()
                         ->columnSpan(['default' => 1, 'md' => 2]),
 
-                    Select::make('country')
+                    Select::make('country_id')
                         ->label(__('Country'))
                         ->placeholder(__('Select Country'))
-                        ->options(
-                            collect(Country::cases())->mapWithKeys(fn($case) => [
-                                $case->value => $case->label(),
-                            ])->toArray()
-                        )
+                        ->options(Country::all()->pluck('name', 'id'))
                         ->searchable()
                         ->columnSpan(['default' => 1, 'md' => 1]),
                 ])
@@ -178,15 +166,20 @@ class ProjectResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('unique_id')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('status')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('type')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('country')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('projectStatus.name')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('projectType.name')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('country.name')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

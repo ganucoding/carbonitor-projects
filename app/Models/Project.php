@@ -11,12 +11,12 @@ class Project extends Model
 
     protected $fillable = ['unique_id', 'name', 'project_status_id', 'project_type_id', 'country_id'];
 
-    public function status()
+    public function projectStatus()
     {
         return $this->belongsTo(ProjectStatus::class, 'project_status_id');
     }
 
-    public function type()
+    public function projectType()
     {
         return $this->belongsTo(ProjectType::class, 'project_type_id');
     }
