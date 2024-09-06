@@ -132,7 +132,7 @@
                             <td>{{ $issuance->vintage }}</td>
                             <td>{{ $issuance->quantity }}</td>
                             <td>{{ $issuance->product }}</td>
-                            <td>{{ $issuance->issuance_date->format('Y-m-d') }}</td>
+                            <td>{{ $issuance->issuance_date }}</td>
                             <td class="text-center">
                                 <!-- Actions can be added here -->
                             </td>
@@ -147,7 +147,7 @@
         </div>
 
         <div class="mt-4">
-            <a href="{{ url($project->certification_docs_url) }}" class="btn btn-info">View Certification Documents</a>
+            <a href="#" class="btn btn-info">View Certification Documents</a>
         </div>
 
         <div class="table-responsive mt-4">
@@ -168,12 +168,12 @@
                 <tbody>
                     @forelse($project->retirements as $retirement)
                         <tr>
-                            <td>{{ $retirement->date->format('Y-m-d') }}</td>
+                            <td>{{ $retirement->date }}</td>
                             <td>{{ $retirement->vintage }}</td>
                             <td>{{ $retirement->serial_number }}</td>
                             <td>{{ $retirement->quantity }}</td>
                             <td>{{ $retirement->product }}</td>
-                            <td>{{ \App\Enums\ProjectStatus::from($retirement->status)->label() }}</td>
+                            <td>{{ \App\Enums\RetirementStatus::from($retirement->status)->label() }}</td>
                             <td>{{ $retirement->note }}</td>
                             <td class="text-center">
                                 <!-- Actions can be added here -->

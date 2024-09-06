@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\ProjectResource\RelationManagers;
 
+use App\Enums\RetirementStatus;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
@@ -62,15 +63,14 @@ class RetirementsRelationManager extends RelationManager
 
                 // Status field
                 Select::make('status')
-                    ->label('Status')
-                    ->nullable()
-                    ->options([
-                        'Active' => 'Active',
-                        'Retired' => 'Retired',
-                        'Pending' => 'Pending',
-                        // Add other statuses as needed
-                    ])
-                    ->placeholder('Select status'),
+                    ->label(__('Retirement Status'))
+                    ->placeholder(__('Select Status'))
+                    ->options(
+                        collect(RetirementStatus::cases())->mapWithKeys(fn($case) => [
+                            $case->value => $case->label(),
+                        ])->toArray()
+                    )
+                    ->searchable(),
 
                 // Note field
                 Textarea::make('note')
