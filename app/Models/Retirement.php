@@ -16,7 +16,7 @@ class Retirement extends Model
         'serial_number',
         'quantity',
         'product',
-        'status',
+        'retirement_status_id',
         'note',
 
         'using_entity',
@@ -32,5 +32,10 @@ class Retirement extends Model
     public function project()
     {
         return $this->belongsTo(Project::class);
+    }
+
+    public function retirementStatus()
+    {
+        return $this->belongsTo(RetirementStatus::class, 'retirement_status_id');
     }
 }

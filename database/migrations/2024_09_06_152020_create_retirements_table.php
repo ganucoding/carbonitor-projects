@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('serial_number')->nullable();
             $table->integer('quantity')->nullable();
             $table->string('product')->nullable();
-            $table->string('status')->nullable();
+            $table->foreignId('retirement_status_id')->nullable()->constrained('retirement_statuses')->onDelete('set null');
             $table->text('note')->nullable();
 
             $table->string('using_entity')->nullable();
