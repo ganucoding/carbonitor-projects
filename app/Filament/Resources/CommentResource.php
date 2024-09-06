@@ -87,4 +87,9 @@ class CommentResource extends Resource
             'edit' => Pages\EditComment::route('/{record}/edit'),
         ];
     }
+
+    public static function canCreate(): bool
+    {
+        return false;
+    }
 }
