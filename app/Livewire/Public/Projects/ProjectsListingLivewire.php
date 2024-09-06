@@ -52,14 +52,15 @@ class ProjectsListingLivewire extends Component implements HasForms, HasTable
                 // ...
             ])
             ->actions([
-                ViewAction::make()
+                ViewAction::make('view')
                     ->modalContent(fn($record) => view('public.projects.show', ['project' => $record]))
                     ->slideOver()
                     ->modalWidth(MaxWidth::FiveExtraLarge),
             ])
             ->bulkActions([
                 // ...
-            ]);
+            ])
+            ->recordAction('view');
     }
 
     public function render(): View
