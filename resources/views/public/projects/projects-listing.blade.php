@@ -126,27 +126,28 @@
                 <div class="d-flex gap-2 me-3 flex-grow-1">
                     <select name="status" class="form-select" aria-label="Project Status">
                         <option value="" {{ request('status') === '' ? 'selected' : '' }}>Project Status</option>
-                        @foreach (\App\Enums\ProjectStatus::cases() as $projectStatus)
-                            <option value="{{ $projectStatus->value }}"
-                                {{ request('status') === $projectStatus->value ? 'selected' : '' }}>
-                                {{ $projectStatus->label() }}
+                        @foreach (\App\Models\ProjectStatus::all() as $projectStatus)
+                            <option value="{{ $projectStatus->id }}"
+                                {{ request('type') == $projectStatus->id ? 'selected' : '' }}>
+                                {{ $projectStatus->name }}
                             </option>
                         @endforeach
                     </select>
                     <select name="type" class="form-select" aria-label="Project Type">
                         <option value="" {{ request('type') === '' ? 'selected' : '' }}>Project Type</option>
-                        @foreach (\App\Enums\ProjectType::cases() as $projectType)
-                            <option value="{{ $projectType->value }}"
-                                {{ request('type') === $projectType->value ? 'selected' : '' }}>
-                                {{ $projectType->label() }}</option>
+                        @foreach (\App\Models\ProjectType::all() as $projectType)
+                            <option value="{{ $projectType->id }}"
+                                {{ request('type') == $projectType->id ? 'selected' : '' }}>
+                                {{ $projectType->name }}
+                            </option>
                         @endforeach
                     </select>
                     <select name="country" class="form-select" aria-label="Country">
                         <option value="" {{ request('country') === '' ? 'selected' : '' }}>Country</option>
-                        @foreach (\App\Enums\Country::cases() as $country)
-                            <option value="{{ $country->value }}"
-                                {{ request('country') === $country->value ? 'selected' : '' }}>
-                                {{ $country->label() }}
+                        @foreach (\App\Models\Country::all() as $country)
+                            <option value="{{ $country->id }}"
+                                {{ request('country') == $country->id ? 'selected' : '' }}>
+                                {{ $country->name }}
                             </option>
                         @endforeach
                     </select>
@@ -180,9 +181,9 @@
                             data-country="{{ $project->country }}">
                             <td>{{ $project->unique_id }}</td>
                             <td>{{ $project->name }}</td>
-                            <td>{{ \App\Enums\ProjectStatus::from($project->status)->label() }}</td>
-                            <td>{{ \App\Enums\ProjectType::from($project->type)->label() }}</td>
-                            <td>{{ \App\Enums\Country::from($project->country)->label() }}</td>
+                            <td>{{ $project->projectStatus?->name }}</td>
+                            <td>{{ $project->projectType?->name }}</td>
+                            <td>{{ $project->country?->name }}</td>
                             <td class="text-center"><a href="{{ route('projects.show', $project) }}"
                                     class="btn btn-info">View</a></td>
                             <td class="text-center icon-container">

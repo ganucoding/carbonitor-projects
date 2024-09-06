@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Enums\ProjectStatus as ProjectStatusEnum;
 use App\Models\ProjectStatus;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;

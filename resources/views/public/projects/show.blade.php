@@ -95,8 +95,7 @@
     <div class="container my-5">
         <div class="project-header text-center">
             <h2>{{ $project->name }}</h2>
-            <small>ID: {{ $project->unique_id }} | Region:
-                {{ \App\Enums\Country::from($project->country)->label() }}</small>
+            <small>ID: {{ $project->unique_id }} | Region: {{ $project->country?->name }}</small>
         </div>
 
         <div class="row">
@@ -148,7 +147,7 @@
                                     </tr>
                                     <tr>
                                         <th>Project Type</th>
-                                        <td>{{ \App\Enums\ProjectType::from($project->type)->label() }}</td>
+                                        <td>{{ $project->projectType?->name }}</td>
                                     </tr>
                                 </table>
                             </div>
@@ -244,7 +243,7 @@
                             <td>{{ $retirement->serial_number }}</td>
                             <td>{{ number_format($retirement->quantity) }}</td>
                             <td>{{ $retirement->product }}</td>
-                            <td>{{ \App\Enums\RetirementStatus::from($retirement->status)->label() }}</td>
+                            <td>{{ $project->projectStatus?->name }}</td>
                             <td>{{ $retirement->note }}</td>
                             <td class="text-center">
                                 <!-- Actions can be added here -->
