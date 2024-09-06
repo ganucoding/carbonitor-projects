@@ -5,6 +5,8 @@ namespace App\Livewire\Public\Projects;
 use App\Models\Project;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Support\Enums\MaxWidth;
+use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -50,7 +52,9 @@ class ProjectsListingLivewire extends Component implements HasForms, HasTable
                 // ...
             ])
             ->actions([
-                // ...
+                ViewAction::make()
+                    ->slideOver()
+                    ->modalWidth(MaxWidth::FiveExtraLarge),
             ])
             ->bulkActions([
                 // ...
