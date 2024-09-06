@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('unique_id')->nullable();
             $table->string('name');
-            $table->string('status')->nullable();
-            $table->string('type')->nullable();
-            $table->string('country')->nullable();
+            $table->foreignId('project_status_id')->nullable()->constrained('project_statuses')->onDelete('set null');
+            $table->foreignId('project_type_id')->nullable()->constrained('project_types')->onDelete('set null');
+            $table->foreignId('country_id')->nullable()->constrained('countries')->onDelete('set null');
             $table->timestamps();
         });
     }
