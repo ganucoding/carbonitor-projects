@@ -13,7 +13,7 @@
         }
 
         .navbar {
-            background-color: #004e60;
+            background-color: #0b7e98;
         }
 
         .navbar-brand {
@@ -26,7 +26,7 @@
         }
 
         .project-header {
-            background: linear-gradient(135deg, #004e60, #005a6f);
+            background: linear-gradient(135deg, #0b7e98, #005a6f);
             color: #fff;
             padding: 30px;
             border-radius: 8px;
@@ -38,25 +38,25 @@
             margin-bottom: 10px;
         }
 
-        .project-info {
-            background-color: #fff;
-            padding: 20px;
+        .card {
+            border: none;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
 
-        .project-info table {
-            margin-bottom: 0;
-        }
-
-        .project-info th {
-            background-color: #f1f3f5;
-            padding: 10px;
+        .card-header {
+            background-color: #0b7e98;
+            color: #fff;
             font-weight: bold;
         }
 
-        .project-info td {
-            padding: 10px;
+        .card-body {
+            padding: 20px;
+        }
+
+        .text-muted {
+            color: #6c757d;
         }
 
         .table-responsive {
@@ -78,34 +78,17 @@
             background-color: #fff;
         }
 
-        .card {
-            border: none;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .card-header {
-            background-color: #004e60;
-            color: #fff;
-            font-weight: bold;
-        }
-
-        .card-body {
-            padding: 20px;
-        }
-
-        .text-muted {
-            color: #6c757d;
+        .mt-4 {
+            margin-top: 2rem !important;
         }
     </style>
 </head>
 
 <body>
-
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Carbonitor</a>
+            <a href="{{ url('/') }}" class="navbar-brand fw-bold">Carbonitor</a>
         </div>
     </nav>
 
@@ -118,58 +101,63 @@
 
         <div class="row">
             <div class="col-md-8">
-                <div class="project-info">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <table class="table table-borderless">
-                                <tr>
-                                    <th>Project Developer</th>
-                                    <td>{{ $project->projectDetail->project_developer }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Methodology</th>
-                                    <td>{!! nl2br(e($project->projectDetail->methodology)) !!}</td>
-                                </tr>
-                                <tr>
-                                    <th>Standards Version</th>
-                                    <td>{{ $project->projectDetail->standards_version }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Project Scale</th>
-                                    <td>{{ $project->projectDetail->project_scale }}</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="col-md-6">
-                            <table class="table table-borderless">
-                                <tr>
-                                    <th>Product</th>
-                                    <td>{{ $project->projectDetail->product }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Crediting Period</th>
-                                    <td>
-                                        {{ \Carbon\Carbon::parse($project->projectDetail->crediting_period_start)->format('M d, Y') }}
-                                        ―
-                                        {{ \Carbon\Carbon::parse($project->projectDetail->crediting_period_end)->format('M d, Y') }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Annual Estimated Credits</th>
-                                    <td>{{ number_format($project->projectDetail->annual_estimated_credits) }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Project Type</th>
-                                    <td>{{ \App\Enums\ProjectType::from($project->type)->label() }}</td>
-                                </tr>
-                            </table>
+                <div class="card">
+                    <div class="card-header">
+                        Project Details
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <table class="table table-borderless">
+                                    <tr>
+                                        <th>Project Developer</th>
+                                        <td>{{ $project->projectDetail->project_developer }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Methodology</th>
+                                        <td>{!! nl2br(e($project->projectDetail->methodology)) !!}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Standards Version</th>
+                                        <td>{{ $project->projectDetail->standards_version }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Project Scale</th>
+                                        <td>{{ $project->projectDetail->project_scale }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <table class="table table-borderless">
+                                    <tr>
+                                        <th>Product</th>
+                                        <td>{{ $project->projectDetail->product }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Crediting Period</th>
+                                        <td>
+                                            {{ \Carbon\Carbon::parse($project->projectDetail->crediting_period_start)->format('M d, Y') }}
+                                            ―
+                                            {{ \Carbon\Carbon::parse($project->projectDetail->crediting_period_end)->format('M d, Y') }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Annual Estimated Credits</th>
+                                        <td>{{ number_format($project->projectDetail->annual_estimated_credits) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Project Type</th>
+                                        <td>{{ \App\Enums\ProjectType::from($project->type)->label() }}</td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-4">
-                <div class="card">
+                <div class="card mb-3">
                     <div class="card-header">
                         Description
                     </div>
@@ -177,7 +165,7 @@
                         <p>{!! nl2br(e($project->projectDetail->description)) !!}</p>
                     </div>
                 </div>
-                <div class="card mt-3">
+                <div class="card mb-3">
                     <div class="card-header">
                         Summary
                     </div>
@@ -185,7 +173,7 @@
                         <p>{!! nl2br(e($project->projectDetail->summary)) !!}</p>
                     </div>
                 </div>
-                <div class="card mt-3">
+                <div class="card">
                     <div class="card-header">
                         Sources
                     </div>

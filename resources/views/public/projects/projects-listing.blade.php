@@ -8,22 +8,52 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @media (max-width: 768px) {
-            .table-responsive {
-                overflow-x: auto;
-            }
+        body {
+            background-color: #f8f9fa;
+        }
 
-            .sticky-actions {
-                position: sticky;
-                right: 0;
-                background: white;
-                z-index: 1;
-            }
+        .navbar {
+            background-color: #0b7e98;
+        }
 
-            th,
-            td {
-                white-space: nowrap;
-            }
+        .navbar-brand {
+            color: #ffffff;
+        }
+
+        .navbar-brand:hover {
+            color: #e9ecef;
+        }
+
+        .container {
+            margin-top: 30px;
+        }
+
+        .table th,
+        .table td {
+            vertical-align: middle;
+        }
+
+        .table thead th {
+            background-color: #0b7e98;
+            color: #ffffff;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .icon-container {
+            text-align: center;
+        }
+
+        .icon-container button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .modal-dialog {
+            max-width: 600px;
         }
 
         .comment-section {
@@ -34,77 +64,98 @@
             margin-bottom: 10px;
         }
 
-        .modal-dialog {
-            max-width: 600px;
+        .form-select,
+        .form-control {
+            border-radius: 0.375rem;
         }
 
-        .icon-container {
-            text-align: center;
-            /* Center align the icon */
+        input[name="search"] {
+            flex: 1;
         }
 
-        .icon-container button {
-            background: transparent;
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            flex-shrink: 0;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+        .btn-info {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+
+        .btn-info:hover {
+            background-color: #117a8b;
+            border-color: #10707f;
+        }
+
+        .card {
             border: none;
-            cursor: pointer;
+            border-radius: 0.375rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #0b7e98;
+            color: #ffffff;
+            font-weight: bold;
         }
     </style>
 </head>
 
 <body>
-
-    <!-- navbar -->
-    <nav class="navbar bg-body-tertiary">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <a href="{{ url('/') }}" class="navbar-brand fw-bold">Carbonitor</a>
         </div>
     </nav>
 
-    <div class="container mt-5">
+    <div class="container">
         <h1 class="mb-4">All Projects</h1>
 
         <!-- Filter and Search Bar Section -->
         <form method="GET" action="{{-- {{ route('projects.index') }} --}}">
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <!-- Filter Section -->
-                    <div class="d-flex">
-                        <select name="status" class="form-select me-2" aria-label="Project Status">
-                            <option value="" {{ request('status') === '' ? 'selected' : '' }}>Project Status
+            <div class="d-flex flex-wrap gap-2 mb-3 align-items-center">
+                <!-- Filter Options -->
+                <div class="d-flex gap-2 me-3 flex-grow-1">
+                    <select name="status" class="form-select" aria-label="Project Status">
+                        <option value="" {{ request('status') === '' ? 'selected' : '' }}>Project Status</option>
+                        @foreach (\App\Enums\ProjectStatus::cases() as $projectStatus)
+                            <option value="{{ $projectStatus->value }}"
+                                {{ request('status') === $projectStatus->value ? 'selected' : '' }}>
+                                {{ $projectStatus->label() }}
                             </option>
-                            @foreach (\App\Enums\ProjectStatus::cases() as $projectStatus)
-                                <option value="{{ $projectStatus->value }}"
-                                    {{ request('status') === $projectStatus ? 'selected' : '' }}>
-                                    {{ $projectStatus->label() }}
-                                </option>
-                            @endforeach
-                        </select>
-                        <select name="type" class="form-select me-2" aria-label="Project Type">
-                            <option value="" {{ request('type') === '' ? 'selected' : '' }}>Project Type</option>
-                            @foreach (\App\Enums\ProjectType::cases() as $projectType)
-                                <option value="{{ $projectType->value }}"
-                                    {{ request('type') === $projectType->value ? 'selected' : '' }}>
-                                    {{ $projectType->label() }}</option>
-                            @endforeach
-                        </select>
-                        <select name="country" class="form-select" aria-label="Country">
-                            <option value="" {{ request('country') === '' ? 'selected' : '' }}>Country</option>
-                            @foreach (\App\Enums\Country::cases() as $country)
-                                <option value="{{ $country->value }}"
-                                    {{ request('country') === $country->value ? 'selected' : '' }}>
-                                    {{ $country->label() }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
+                        @endforeach
+                    </select>
+                    <select name="type" class="form-select" aria-label="Project Type">
+                        <option value="" {{ request('type') === '' ? 'selected' : '' }}>Project Type</option>
+                        @foreach (\App\Enums\ProjectType::cases() as $projectType)
+                            <option value="{{ $projectType->value }}"
+                                {{ request('type') === $projectType->value ? 'selected' : '' }}>
+                                {{ $projectType->label() }}</option>
+                        @endforeach
+                    </select>
+                    <select name="country" class="form-select" aria-label="Country">
+                        <option value="" {{ request('country') === '' ? 'selected' : '' }}>Country</option>
+                        @foreach (\App\Enums\Country::cases() as $country)
+                            <option value="{{ $country->value }}"
+                                {{ request('country') === $country->value ? 'selected' : '' }}>
+                                {{ $country->label() }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
-                <div class="col-md-6">
-                    <!-- Search Bar -->
-                    <div class="input-group">
-                        <input name="search" type="text" class="form-control" placeholder="Search for projects..."
-                            value="{{ request('search') }}" aria-label="Search">
-                        <button class="btn btn-primary" type="submit">Search</button>
-                    </div>
+                <!-- Search Bar and Button -->
+                <div class="d-flex">
+                    <input name="search" type="text" class="form-control me-2" placeholder="Search for projects..."
+                        value="{{ request('search') }}" aria-label="Search">
+                    <button class="btn btn-primary" type="submit">Search</button>
                 </div>
             </div>
         </form>
@@ -112,15 +163,15 @@
         <!-- Project Table -->
         <div class="table-responsive">
             <table class="table table-bordered">
-                <thead class="table-light">
+                <thead>
                     <tr>
                         <th>ID</th>
                         <th>Project Details</th>
                         <th>Status</th>
                         <th>Project Type</th>
                         <th>Country</th>
-                        <th class="sticky-actions">Actions</th>
-                        <th class="center-icon">Comments</th>
+                        <th class="text-center">Actions</th>
+                        <th class="text-center">Comments</th>
                     </tr>
                 </thead>
                 <tbody id="project-list">
@@ -132,8 +183,9 @@
                             <td>{{ \App\Enums\ProjectStatus::from($project->status)->label() }}</td>
                             <td>{{ \App\Enums\ProjectType::from($project->type)->label() }}</td>
                             <td>{{ \App\Enums\Country::from($project->country)->label() }}</td>
-                            <td><a href="{{ route('projects.show', $project) }}" class="btn btn-info">VIEW</a></td>
-                            <td class="icon-container">
+                            <td class="text-center"><a href="{{ route('projects.show', $project) }}"
+                                    class="btn btn-info">View</a></td>
+                            <td class="text-center icon-container">
                                 <button class="btn btn-secondary" onclick="openCommentModal(this)"><i
                                         class="fas fa-comment"></i></button>
                                 <div class="comment-section"
@@ -151,7 +203,7 @@
         </div>
 
         <!-- Pagination Section -->
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-between align-items-center mt-4">
             <div>
                 <span id="project-count">{{ $projects->firstItem() }}-{{ $projects->lastItem() }} of
                     {{ $projects->total() }}</span>
@@ -164,7 +216,7 @@
 
     <!-- Comment Modal -->
     <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="commentModalLabel">Comments</h5>
@@ -193,7 +245,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function openCommentModal(button) {
             const row = button.closest('tr');
