@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('certification_documents', function (Blueprint $table) {
+        Schema::create('folders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('project_id')->constrained()->onDelete('cascade');
-            $table->string('file_path');
-            $table->string('file_name')->nullable();
-            $table->foreignId('folder_id')->nullable()->constrained('folders')->onDelete('set null');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('certification_documents');
+        Schema::dropIfExists('folders');
     }
 };

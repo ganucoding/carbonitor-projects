@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             ProjectTypeSeeder::class,
             ProjectStatusSeeder::class,
             CountrySeeder::class,
+            FolderSeeder::class,
             RetirementStatusSeeder::class,
         ]);
     }
