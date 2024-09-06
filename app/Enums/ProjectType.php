@@ -8,6 +8,7 @@ enum ProjectType: string
     case ENERGY_EFFICIENCY_COMMERCIAL_SECTOR            = 'energy-efficiency-commercial-sector';
     case BIOGAS_ELECTRICITY                             = 'biogas-electricity';
     case BIOMASS_OR_LIQUID_BIOFUEL                      = 'biomass-or-liquid-biofuel';
+    case GEO_THERMAL                                    = 'geo-thermal';
     case SOLAR_THERMAL                                  = 'solar-thermal';
     case WIND                                           = 'wind';
     case BIOGAS                                         = 'biogas';
@@ -28,6 +29,7 @@ enum ProjectType: string
             self::ENERGY_EFFICIENCY_COMMERCIAL_SECTOR           => 'Energy Efficiency Commercial Sector',
             self::BIOGAS_ELECTRICITY                            => 'Biogas Electricity',
             self::BIOMASS_OR_LIQUID_BIOFUEL                     => 'Biomass, or Liquid Biofuel',
+            self::GEO_THERMAL                                   => 'Geo Thermal',
             self::SOLAR_THERMAL                                 => 'Solar Thermal',
             self::WIND                                          => 'Wind',
             self::BIOGAS                                        => 'Biogas',
