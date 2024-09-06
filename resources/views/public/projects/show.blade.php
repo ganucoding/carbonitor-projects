@@ -52,8 +52,9 @@
 
     <div class="container my-5">
         <div class="project-header text-center">
-            <h2>{{ $project->projectDetail->title }}</h2>
-            <small>ID: {{ $project->projectDetail->id }} | Region: {{ $project->projectDetail->region }}</small>
+            <h2>{{ $project->name }}</h2>
+            <small>ID: {{ $project->unique_id }} | Region:
+                {{ \App\Enums\Country::from($project->country)->label() }}</small>
         </div>
 
         <div class="row">
@@ -64,11 +65,11 @@
                             <table class="table table-borderless">
                                 <tr>
                                     <th>Project Developer</th>
-                                    <td>{{ $project->projectDetail->developer }}</td>
+                                    <td>{{ $project->projectDetail->project_developer }}</td>
                                 </tr>
                                 <tr>
                                     <th>Methodology</th>
-                                    <td>{{ $project->projectDetail->methodology }}</td>
+                                    <td>{!! nl2br(e($project->projectDetail->methodology)) !!}</td>
                                 </tr>
                                 <tr>
                                     <th>Standards Version</th>
@@ -76,7 +77,7 @@
                                 </tr>
                                 <tr>
                                     <th>Project Scale</th>
-                                    <td>{{ $project->projectDetail->scale }}</td>
+                                    <td>{{ $project->projectDetail->project_scale }}</td>
                                 </tr>
                             </table>
                         </div>
@@ -88,15 +89,19 @@
                                 </tr>
                                 <tr>
                                     <th>Crediting Period</th>
-                                    <td>{{ $project->projectDetail->crediting_period }}</td>
+                                    <td>
+                                        {{ \Carbon\Carbon::parse($project->projectDetail->crediting_period_start)->format('M d, Y') }}
+                                        ―
+                                        {{ \Carbon\Carbon::parse($project->projectDetail->crediting_period_end)->format('M d, Y') }}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>Annual Estimated Credits</th>
-                                    <td>{{ $project->projectDetail->annual_estimated_credits }}</td>
+                                    <td>{{ number_format($project->projectDetail->annual_estimated_credits) }}</td>
                                 </tr>
                                 <tr>
                                     <th>Project Type</th>
-                                    <td>{{ $project->projectDetail->project_type }}</td>
+                                    <td>{{ \App\Enums\ProjectType::from($project->type)->label() }}</td>
                                 </tr>
                             </table>
                         </div>
@@ -106,11 +111,11 @@
 
             <div class="col-md-4">
                 <p class="fw-bold">Description:</p>
-                <p>{{ $project->projectDetail->description }}</p>
+                <p>{!! nl2br(e($project->projectDetail->description)) !!}</p>
                 <p class="fw-bold">Summary:</p>
-                <p>{{ $project->projectDetail->summary }}</p>
+                <p>{!! nl2br(e($project->projectDetail->summary)) !!}</p>
                 <p class="fw-bold">Sources:</p>
-                <p>{{ $project->projectDetail->sources }}</p>
+                <p>{!! nl2br(e($project->projectDetail->sources)) !!}</p>
             </div>
         </div>
 
@@ -132,7 +137,7 @@
                             <td>{{ $issuance->vintage }}</td>
                             <td>{{ $issuance->quantity }}</td>
                             <td>{{ $issuance->product }}</td>
-                            <td>{{ $issuance->issuance_date }}</td>
+                            <td>{{ \Carbon\Carbon::parse($issuance->issuance_date)->format('M d, Y') }}</td>
                             <td class="text-center">
                                 <!-- Actions can be added here -->
                             </td>
@@ -147,7 +152,7 @@
         </div>
 
         <div class="mt-4">
-            <a href="#" class="btn btn-info">View Certification Documents</a>
+            <a href="{{-- {{ url($project->certification_docs_url) }} --}}" class="btn btn-info">View Certification Documents</a>
         </div>
 
         <div class="table-responsive mt-4">
@@ -168,10 +173,10 @@
                 <tbody>
                     @forelse($project->retirements as $retirement)
                         <tr>
-                            <td>{{ $retirement->date }}</td>
+                            <td>{{ \Carbon\Carbon::parse($retirement->date)->format('M d, Y') }}</td>
                             <td>{{ $retirement->vintage }}</td>
                             <td>{{ $retirement->serial_number }}</td>
-                            <td>{{ $retirement->quantity }}</td>
+                            <td>{{ number_format($retirement->quantity) }}</td>
                             <td>{{ $retirement->product }}</td>
                             <td>{{ \App\Enums\RetirementStatus::from($retirement->status)->label() }}</td>
                             <td>{{ $retirement->note }}</td>
