@@ -5,32 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
     <style>
         body {
             background-color: #f0f2f5;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .navbar {
-            background-color: #0b7e98;
-        }
-
-        .navbar-brand {
-            color: #fff;
-            font-weight: bold;
-        }
-
-        .navbar-brand:hover {
-            color: #e1e1e1;
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            box-sizing: border-box;
         }
 
         .project-header {
-            background: linear-gradient(135deg, #0b7e98, #005a6f);
+            background: linear-gradient(135deg, #02B075, #028d59);
             color: #fff;
             padding: 30px;
             border-radius: 8px;
             margin-bottom: 20px;
+            text-align: center;
         }
 
         .project-header h2 {
@@ -43,57 +41,115 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
+            background-color: #fff;
         }
 
         .card-header {
-            background-color: #0b7e98;
+            background-color: #02B075;
             color: #fff;
             font-weight: bold;
+            padding: 1rem;
+            border-radius: 8px 8px 0 0;
         }
 
         .card-body {
             padding: 20px;
         }
 
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid #dee2e6;
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        .table thead th {
+            background-color: #e0f2e9;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
         .text-muted {
             color: #6c757d;
         }
 
-        .table-responsive {
-            margin-top: 20px;
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            background-color: #02B075;
+            text-decoration: none;
+            font-weight: bold;
+            text-align: center;
         }
 
-        .table-bordered th,
-        .table-bordered td {
-            vertical-align: middle;
+        .btn:hover {
+            background-color: #028d59;
         }
 
-        .table-bordered thead th {
-            background-color: #f1f3f5;
+        .text-center {
+            text-align: center;
         }
 
         .actions-sticky {
             position: sticky;
             right: 0;
             background-color: #fff;
+            z-index: 10;
         }
 
         .mt-4 {
-            margin-top: 2rem !important;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .row {
+                display: flex;
+                flex-wrap: wrap;
+                margin: -15px;
+            }
+
+            .col-md-8,
+            .col-md-4 {
+                padding: 15px;
+                box-sizing: border-box;
+            }
+
+            .col-md-8 {
+                flex: 0 0 66.66667%;
+                max-width: 66.66667%;
+            }
+
+            .col-md-4 {
+                flex: 0 0 33.33333%;
+                max-width: 33.33333%;
+            }
+
+            .card-body {
+                padding: 30px;
+                /* Added more padding for desktop view */
+                padding: 30px;
+                /* Added more padding for desktop view */
+            }
         }
     </style>
 </head>
 
 <body>
-    <!-- navbar -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a href="{{ url('/') }}" class="navbar-brand fw-bold">Carbonitor</a>
-        </div>
-    </nav>
+    <a href="#"></a> {{-- Don't remove this anchor tag --}}
 
-    <div class="container my-5">
-        <div class="project-header text-center">
+    <div class="container">
+        <div class="project-header">
             <h2>{{ $project->name }}</h2>
             <small>ID: {{ $project->unique_id }} | Region: {{ $project->country?->name }}</small>
         </div>
@@ -107,7 +163,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <table class="table table-borderless">
+                                <table class="table">
                                     <tr>
                                         <th>Project Developer</th>
                                         <td>{{ $project->projectDetail?->project_developer }}</td>
@@ -127,7 +183,7 @@
                                 </table>
                             </div>
                             <div class="col-md-6">
-                                <table class="table table-borderless">
+                                <table class="table">
                                     <tr>
                                         <th>Product</th>
                                         <td>{{ $project->projectDetail?->product }}</td>
@@ -186,7 +242,7 @@
 
         <div class="table-responsive mt-4">
             <h5>Issuance List</h5>
-            <table class="table table-bordered">
+            <table class="table">
                 <thead>
                     <tr>
                         <th>Vintage</th>
@@ -217,12 +273,12 @@
         </div>
 
         <div class="mt-4">
-            <a href="{{-- {{ url($project->certification_docs_url) }} --}}" class="btn btn-info">View Certification Documents</a>
+            <a href="{{-- {{ url($project->certification_docs_url) }} --}}" class="btn">View Certification Documents</a>
         </div>
 
         <div class="table-responsive mt-4">
             <h5>Retirements</h5>
-            <table class="table table-bordered">
+            <table class="table">
                 <thead>
                     <tr>
                         <th>Date</th>
@@ -251,15 +307,13 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="8" class="text-center">There are no credits.</td>
+                            <td colspan="8" class="text-center">There are no retirements.</td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
