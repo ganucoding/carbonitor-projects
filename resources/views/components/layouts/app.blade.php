@@ -73,7 +73,7 @@
     </div>
 
     <!-- Main Content -->
-    <main class="pt-16 pb-20 px-5 md:p-28">
+    <main x-show="!open" class="pt-16 pb-20 px-5 md:p-28">
         {{ $slot }}
     </main>
 
