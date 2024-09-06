@@ -22,7 +22,29 @@ class ProjectsListingLivewire extends Component implements HasForms, HasTable
         return $table
             ->query(Project::query())
             ->columns([
-                TextColumn::make('name'),
+                TextColumn::make('unique_id')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('name')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('projectStatus.name')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('projectType.name')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('country.name')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 // ...
