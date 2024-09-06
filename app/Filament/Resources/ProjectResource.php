@@ -60,21 +60,36 @@ class ProjectResource extends Resource
                     Select::make('project_status_id')
                         ->label(__('Project Status'))
                         ->placeholder(__('Select Status'))
-                        ->options(ProjectStatus::all()->pluck('name', 'id'))
+                        ->relationship(name: 'projectStatus', titleAttribute: 'name')
+                        ->preload()
+                        ->createOptionForm([
+                            TextInput::make('name')
+                                ->required(),
+                        ])
                         ->searchable()
                         ->columnSpan(['default' => 1, 'md' => 1]),
 
                     Select::make('project_type_id')
                         ->label(__('Project Type'))
                         ->placeholder(__('Select Type'))
-                        ->options(ProjectType::all()->pluck('name', 'id'))
+                        ->relationship(name: 'projectType', titleAttribute: 'name')
+                        ->preload()
+                        ->createOptionForm([
+                            TextInput::make('name')
+                                ->required(),
+                        ])
                         ->searchable()
                         ->columnSpan(['default' => 1, 'md' => 2]),
 
                     Select::make('country_id')
                         ->label(__('Country'))
                         ->placeholder(__('Select Country'))
-                        ->options(Country::all()->pluck('name', 'id'))
+                        ->relationship(name: 'country', titleAttribute: 'name')
+                        ->preload()
+                        ->createOptionForm([
+                            TextInput::make('name')
+                                ->required(),
+                        ])
                         ->searchable()
                         ->columnSpan(['default' => 1, 'md' => 1]),
                 ])

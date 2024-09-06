@@ -62,14 +62,15 @@ class RetirementsRelationManager extends RelationManager
                     ->placeholder('Enter the product'),
 
                 // Status field
-                Select::make('status')
+                Select::make('retirement_status_id')
                     ->label(__('Retirement Status'))
                     ->placeholder(__('Select Status'))
-                    ->options(
-                        collect(RetirementStatus::cases())->mapWithKeys(fn($case) => [
-                            $case->value => $case->label(),
-                        ])->toArray()
-                    )
+                    ->relationship(name: 'retirementStatus', titleAttribute: 'name')
+                    ->preload()
+                    ->createOptionForm([
+                        TextInput::make('name')
+                            ->required(),
+                    ])
                     ->searchable(),
 
                 // Note field
