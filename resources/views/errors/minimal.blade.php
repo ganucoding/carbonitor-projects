@@ -133,6 +133,14 @@
                 </div>
             </div>
             <a href="{{ url('/') }}" class="return-home">Return Home</a>
+
+            <!-- Logout Button -->
+            @auth
+                <form method="POST" action="{{ route('logout') }}" style="margin-top: 20px;">
+                    @csrf
+                    <button type="submit" class="btn btn-warning">Logout</button>
+                </form>
+            @endauth
         </div>
     </main>
 
