@@ -199,18 +199,23 @@ class ProjectResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('unique_id')
                     ->searchable()
+                    ->wrap()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
+                    ->wrap()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('projectStatus.name')
                     ->searchable()
+                    ->wrap()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('projectType.name')
                     ->searchable()
+                    ->wrap()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('country.name')
                     ->searchable()
+                    ->wrap()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
