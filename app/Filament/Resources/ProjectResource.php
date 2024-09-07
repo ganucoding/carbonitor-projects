@@ -98,6 +98,14 @@ class ProjectResource extends Resource
             Section::make(__('Project Details'))
                 ->relationship('projectDetail')
                 ->schema([
+                    Textarea::make('google_maps_embed_code')
+                        ->label(__('Google Maps Embed Code'))
+                        ->helperText('In Google Maps, select a location, click "Share", then "Embed a map", and click on "COPY HTML". Paste that code here.')
+                        ->nullable()
+                        ->rows(1)
+                        ->autosize()
+                        ->columnSpan(1),
+
                     Textarea::make('project_developer')
                         ->label(__('Project Developer'))
                         ->nullable()

@@ -112,6 +112,26 @@
             margin-top: 2rem;
         }
 
+        .map-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #ddd;
+        }
+
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
         @media (min-width: 768px) {
             .row {
                 display: flex;
@@ -237,6 +257,13 @@
                         <p>{!! nl2br(e($project->projectDetail?->sources)) !!}</p>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <h5>Location</h5>
+            <div class="map-container">
+                {!! $project->projectDetail?->google_maps_embed_code !!}
             </div>
         </div>
 
