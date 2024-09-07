@@ -1,4 +1,29 @@
 <div>
+
+    <body>
+        <div class="container">
+            <h1>{{ $project->name }}</h1>
+
+            <div>
+                <h5>Certification Documents</h5>
+                @foreach ($project->certificationDocuments->groupBy('folder_id') as $folderId => $documents)
+                    <div class="folder">
+                        <h6>{{ $documents->first()->folder?->name ?? 'Uncategorised' }}</h6>
+                        <ul>
+                            @foreach ($documents as $document)
+                                <li>
+                                    <a href="{{ asset('storage/' . $document->file_path) }}" target="_blank">
+                                        {{ $document->file_name ?? 'Untitled' }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </body>
+
     <style>
         h1 {
             background: linear-gradient(135deg, #02B075, #028d59);
@@ -124,28 +149,4 @@
             });
         });
     </script>
-
-    <body>
-        <div class="container">
-            <h1>{{ $project->name }}</h1>
-
-            <div>
-                <h5>Certification Documents</h5>
-                @foreach ($project->certificationDocuments->groupBy('folder_id') as $folderId => $documents)
-                    <div class="folder">
-                        <h6>{{ $documents->first()->folder?->name ?? 'Uncategorised' }}</h6>
-                        <ul>
-                            @foreach ($documents as $document)
-                                <li>
-                                    <a href="{{ asset('storage/' . $document->file_path) }}" target="_blank">
-                                        {{ $document->file_name ?? 'Untitled' }}
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </body>
 </div>
