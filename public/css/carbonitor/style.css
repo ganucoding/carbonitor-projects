@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+	font-family: 'Poppins', Arial, Helvetica, sans-serif;
+}
+
+:root {
+	--primary-color: #02B075;
+	--primary-color-alt: #1e8d68;
+	--bg-color-light: #f1fbff;
+	--bg-color-dark: #202123;
+}
+
+body {
+	background: var(--bg-color-light);
+}
+
+.section-padding {
+	padding: 100px 0;
+}
+
+.text-main {
+	color: var(--primary-color);
+}
+
+.btn-main {
+	background-color: var(--primary-color);
+	color: var(--bg-color-light);
+}
+
+.navbar-nav a {
+	font-size: 15px;
+	text-transform: uppercase;
+	font-weight: 500;
+}
+
+.navbar-nav a:hover {
+	background-color: var(--primary-color);
+	color: var(--bg-color-light);
+	border-radius: 50px;
+	transition: all 0.4s ease-in-out;
+}
+
+.navbar-light .navbar-brand {
+	color: var(--bg-color-dark);
+	font-size: 25px;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 2px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+	color: #000;
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+	color: #000;
+}
+
+.h2-main {
+	font-weight: 700;
+	font-size: 2.5rem;
+}
+
+.h2-main span {
+	color: var(--primary-color);
+}
+
+.w-100 {
+	height: 100vh;
+}
+
+.navbar-toggler {
+	padding: 1px 5px;
+	font-size: 18px;
+	line-height: 0.3;
+	background: #fff;
+}
+
+.portfolio .card {
+	box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.team .card {
+	box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.services .card-body i {
+	font-size: 50px;
+}
+
+.team .card-body i {
+	font-size: 20px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+	.carousel-caption {
+		bottom: 370px;
+	}
+	.carousel-caption p {
+		width: 100%;
+	}
+	.card {
+		margin-bottom: 30px;
+	}
+	.img-area img {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	.navbar-nav {
+		text-align: center;
+	}
+	.carousel-caption {
+		bottom: 125px;
+	}
+	.carousel-caption h5 {
+		font-size: 17px;
+	}
+	.carousel-caption a {
+		padding: 10px 15px;
+		font-size: 15px;
+	}
+	.carousel-caption p {
+		width: 100%;
+		line-height: 1.6;
+		font-size: 12px;
+	}
+	.about-text {
+		padding-top: 50px;
+	}
+	.card {
+		margin-bottom: 30px;
+	}
+}
+
+/* SECTION */
+.section-header-head {
+	background-color: var(--primary-color);
+	padding: 20px;
+	color: var(--bg-color-light);
+	text-align: center;
+	font-size: 50px;
+}
+
+.section-header-head:hover {
+	background-color: var(--primary-color-alt);
+	transform: scale(1.1);
+}
+
+/* About HTML */
+.para-main {
+	text-transform: uppercase;
+	font-weight: 600;
+}
+
+.para-text {
+	text-align: justify;
+}
+
+/* Projects HTML */
+mark {
+	font-weight: 700;
+	text-decoration: underline;
+}
+
+.projects-file {
+	text-align: center;
+}
