@@ -16,8 +16,9 @@ class UserSeeder extends Seeder
         // Create an admin user
         User::create([
             'name' => 'admin',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin@carbonitor.com',
             'password' => Hash::make('12345678'), // Hashing the password
+            'is_approved' => true,
         ]);
     }
 }
