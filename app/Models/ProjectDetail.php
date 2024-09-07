@@ -22,6 +22,7 @@ class ProjectDetail extends Model
         'description',
         'summary',
         'sources',
+        'google_maps_embed_code',
     ];
 
     protected $dates = [

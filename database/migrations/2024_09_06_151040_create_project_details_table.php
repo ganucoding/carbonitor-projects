@@ -25,6 +25,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->text('summary')->nullable();
             $table->text('sources')->nullable();
+            $table->text('google_maps_embed_code')->nullable();
             $table->timestamps();
         });
     }
