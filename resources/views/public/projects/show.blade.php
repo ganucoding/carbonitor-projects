@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Dashboard</title>
+    <title>Project Details</title>
     <style>
         body {
             background-color: #f0f2f5;
@@ -273,7 +273,8 @@
         </div>
 
         <div class="mt-4">
-            <a href="{{ route('projects.show', $project) }}" class="btn" target="_blank" rel="noopener noreferrer">
+            <a href="{{ route('projects.viewCertificationDocuments', $project) }}" class="btn" target="_blank"
+                rel="noopener noreferrer">
                 View Certification Documents
             </a>
         </div>

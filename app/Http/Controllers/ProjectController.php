@@ -64,6 +64,14 @@ class ProjectController extends Controller
     }
 
     /**
+     * Display the certification documents that belong to the specified resource.
+     */
+    public function viewCertificationDocuments(Project $project)
+    {
+        return view('public.projects.view-certification-documents', compact('project'));
+    }
+
+    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Project $project)
