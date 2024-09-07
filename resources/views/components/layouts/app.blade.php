@@ -53,7 +53,7 @@
     @include('components.carbonitor.navbar')
 
     <!-- Main Content -->
-    <main class="pt-16 pb-20 px-5 md:p-28">
+    <main class="pt-16 pb-20 px-5 md:p-32">
         {{ $slot }}
     </main>
 
