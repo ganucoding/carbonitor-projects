@@ -13,11 +13,22 @@
     @filamentStyles
     @vite('resources/css/app.css')
 
-    <!-- Additional CSS -->
+    <!-- All CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href="{{ asset('css/carbonitor/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/carbonitor/style.css') }}" rel="stylesheet">
+
+    <!-- font awesome link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap">
-    <link rel="icon" type="image/svg+xml" href="img/carbonitor-icon-old.svg">
+
+    <!-- Google font Links -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- favicon -->
+    <link rel="icon" type="svg/xml" href="img/carbonitor/carbonitor-icon-old.svg">
 
     <style>
         [x-cloak] {
@@ -37,12 +48,12 @@
     </style>
 </head>
 
-<body class="antialiased" x-data="{ open: false }">
+<body class="antialiased">
     <!-- Include Navbar -->
     @include('components.carbonitor.navbar')
 
     <!-- Main Content -->
-    <main x-show="!open" class="pt-16 pb-20 px-5 md:p-28">
+    <main class="pt-16 pb-20 px-5 md:p-28">
         {{ $slot }}
     </main>
 
@@ -56,6 +67,12 @@
     <!-- Scripts -->
     @filamentScripts
     @vite('resources/js/app.js')
+
+    <!-- All Js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/carbonitor/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/carbonitor/script.js') }}"></script>
 </body>
 
 </html>
