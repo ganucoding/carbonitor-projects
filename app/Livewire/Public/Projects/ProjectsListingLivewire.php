@@ -27,6 +27,7 @@ class ProjectsListingLivewire extends Component implements HasForms, HasTable
             ->columns([
                 TextColumn::make('unique_id')
                     ->searchable()
+                    ->wrap()
                     ->sortable(),
                 TextColumn::make('name')
                     ->searchable()
@@ -34,12 +35,15 @@ class ProjectsListingLivewire extends Component implements HasForms, HasTable
                     ->sortable(),
                 TextColumn::make('projectStatus.name')
                     ->searchable()
+                    ->wrap()
                     ->sortable(),
                 TextColumn::make('projectType.name')
                     ->searchable()
+                    ->wrap()
                     ->sortable(),
                 TextColumn::make('country.name')
                     ->searchable()
+                    ->wrap()
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
