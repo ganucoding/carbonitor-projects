@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProjectController;
 use App\Livewire\Public\Projects\ProjectsListingLivewire;
+use App\Livewire\Public\Projects\ViewCertificationDocumentsLivewire;
 use Illuminate\Support\Facades\Route;
 
 /* Laravel */
@@ -11,7 +12,7 @@ Route::resource('projects', ProjectController::class)->only('show');
 /* Livewire */
 Route::get('/', ProjectsListingLivewire::class);
 Route::get('/projects-listing', ProjectsListingLivewire::class);
-Route::get('/view-certification-documents/{project}', [ProjectController::class, 'viewCertificationDocuments'])->name('projects.viewCertificationDocuments');
+Route::get('/view-certification-documents/{project}', ViewCertificationDocumentsLivewire::class)->name('projects.viewCertificationDocuments');
 
 /* Route::get('/', function () {
     return view('welcome');
