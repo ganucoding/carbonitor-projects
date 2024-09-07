@@ -5,6 +5,7 @@ use App\Http\Controllers\ProjectController;
 use App\Livewire\Public\Projects\ProjectsListingLivewire;
 use App\Livewire\Public\Projects\ViewCertificationDocumentsLivewire;
 use App\Livewire\Public\Projects\ViewIssuanceLivewire;
+use App\Livewire\Public\Projects\ViewRetirementLivewire;
 use Illuminate\Support\Facades\Route;
 
 /* Route::get('/', function () {
@@ -20,6 +21,7 @@ Route::resource('projects', ProjectController::class)->only('show');
 Route::get('/projects-listing', ProjectsListingLivewire::class)->name('projects.projects-listing');
 Route::get('/view-issuance/{project}/{issuance}', ViewIssuanceLivewire::class)->name('projects.viewIssuanceLivewire');
 Route::get('/view-certification-documents/{project}', ViewCertificationDocumentsLivewire::class)->name('projects.viewCertificationDocuments');
+Route::get('/view-retirement/{project}/{retirement}', ViewRetirementLivewire::class)->name('projects.viewRetirementLivewire');
 
 Route::middleware([
     'auth:sanctum',

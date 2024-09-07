@@ -105,7 +105,7 @@
             position: sticky;
             right: 0;
             background-color: #fff;
-            z-index: 10;
+            z-index: 0;
         }
 
         .mt-4 {
@@ -259,7 +259,7 @@
                             <td>{{ $issuance->quantity }}</td>
                             <td>{{ $issuance->product }}</td>
                             <td>{{ \Carbon\Carbon::parse($issuance->issuance_date)->format('M d, Y') }}</td>
-                            <td class="text-center">
+                            <td class="text-center actions-sticky">
                                 <a href="{{ route('projects.viewIssuanceLivewire', ['project' => $project, 'issuance' => $issuance]) }}"
                                     class="btn" target="_blank" rel="noopener noreferrer">
                                     View
@@ -307,8 +307,11 @@
                             <td>{{ $retirement->product }}</td>
                             <td>{{ $project->projectStatus?->name }}</td>
                             <td>{{ $retirement->note }}</td>
-                            <td class="text-center">
-                                <!-- Actions can be added here -->
+                            <td class="text-center actions-sticky">
+                                <a href="{{ route('projects.viewRetirementLivewire', ['project' => $project, 'retirement' => $retirement]) }}"
+                                    class="btn" target="_blank" rel="noopener noreferrer">
+                                    View
+                                </a>
                             </td>
                         </tr>
                     @empty
