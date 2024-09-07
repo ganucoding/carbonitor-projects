@@ -260,7 +260,10 @@
                             <td>{{ $issuance->product }}</td>
                             <td>{{ \Carbon\Carbon::parse($issuance->issuance_date)->format('M d, Y') }}</td>
                             <td class="text-center">
-                                <!-- Actions can be added here -->
+                                <a href="{{ route('projects.viewIssuanceLivewire', ['project' => $project, 'issuance' => $issuance]) }}"
+                                    class="btn" target="_blank" rel="noopener noreferrer">
+                                    View
+                                </a>
                             </td>
                         </tr>
                     @empty
