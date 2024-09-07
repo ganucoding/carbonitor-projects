@@ -65,15 +65,21 @@ class ProjectsListingLivewire extends Component implements HasForms, HasTable
                     ->searchable(),
             ])
             ->actions([
-                ViewAction::make('view')
+                ViewAction::make('viewProjectDetail')
                     ->modalContent(fn($record) => view('public.projects.show', ['project' => $record]))
                     ->slideOver()
                     ->modalWidth(MaxWidth::FiveExtraLarge),
+                ViewAction::make('viewCommentsSection')
+                    ->label('Comment')
+                    ->modalContent(fn($record) => view('public.projects.livewire-comments-section', ['project' => $record]))
+                    ->slideOver()
+                    ->modalWidth(MaxWidth::FiveExtraLarge)
+                    ->icon('heroicon-m-chat-bubble-oval-left-ellipsis'),
             ])
             ->bulkActions([
                 // ...
             ])
-            ->recordAction('view');
+            ->recordAction('viewProjectDetail');
     }
 
     public function render(): View
