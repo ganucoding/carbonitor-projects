@@ -25,6 +25,81 @@
     <!-- favicon -->
     <link rel="icon" type="svg/xml" href="img/carbonitor/carbonitor-icon-old.svg">
 
+    <style>
+        /* Carousel container */
+        #teamCarousel {
+            position: relative;
+        }
+
+        /* Carousel indicators */
+        #teamCarousel .carousel-indicators button {
+            background-color: #4CAF50;
+            /* Green color */
+        }
+
+        #teamCarousel .carousel-indicators .active {
+            background-color: #2E7D32;
+            /* Darker green color for the active indicator */
+        }
+
+        /* Carousel controls */
+        #teamCarousel .carousel-control-prev-icon,
+        #teamCarousel .carousel-control-next-icon {
+            background-color: #4CAF50;
+            /* Green background for the controls */
+            border-radius: 50%;
+            /* Rounded corners */
+        }
+
+        #teamCarousel .carousel-control-prev-icon {
+            background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"%3E%3Cpath d="M4.146 7.646a.5.5 0 0 1 0-.707L7.793 3.5a.5.5 0 0 1 .707.707L5.207 7.5l3.293 3.293a.5.5 0 0 1-.707.707l-3.647-3.647z"/%3E%3C/svg%3E');
+        }
+
+        #teamCarousel .carousel-control-next-icon {
+            background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16"%3E%3Cpath d="M11.854 7.646a.5.5 0 0 0 0-.707L8.207 3.5a.5.5 0 0 0-.707.707L10.793 7.5 7.5 10.793a.5.5 0 0 0 .707.707l3.647-3.647z"/%3E%3C/svg%3E');
+        }
+
+        /* Card styling */
+        #teamCarousel .carousel-item .card {
+            border: 2px solid #4CAF50;
+            /* Green border for the card */
+            border-radius: 8px;
+            /* Rounded corners */
+            overflow: hidden;
+            /* Ensures images fit within the card */
+        }
+
+        #teamCarousel .carousel-item .card-body {
+            background-color: #f9f9f9;
+            /* Light background for the card body */
+            color: #333;
+            /* Dark text color */
+        }
+
+        #teamCarousel .carousel-item .card-title {
+            color: #4CAF50;
+            /* Green color for card title */
+        }
+
+        #teamCarousel .carousel-item .card-text {
+            color: #555;
+            /* Darker text for card text */
+        }
+
+        #teamCarousel .carousel-item .socials i {
+            color: #4CAF50;
+            /* Green color for social icons */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 767.98px) {
+            #teamCarousel .carousel-item {
+                text-align: center;
+            }
+        }
+    </style>
+
+
 </head>
 
 <body>
@@ -169,73 +244,118 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12 col-md-4 col-lg-4">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <img src="img/carbonitor/iqbal-pic.svg" alt="" class="img-fluid rounded-circle">
-                            <h3 class="card-title py-2">Amirul Iqbal</h3>
-                            <p class="card-text">Amirul Iqbal is an Integrity Officer serving at a public university in
-                                Terengganu, Malaysia, with a background in law. His role in Carbonitor involves managing
-                                all aspects of Tech Development for this project, ensuring that we maintain the highest
-                                standards of integrity and compliance.</p>
-                            <p class="socials">
-                                <a href="https://www.facebook.com/miyoyt?mibextid=ZbWKwL"><i
-                                        class="bi bi-facebook text-dark mx-1"></i></a>
-                                <a href="https://www.linkedin.com/in/muhamadamiruliqbal"><i
-                                        class="bi bi-linkedin text-dark mx-1"></i></a>
-                                <a href="https://www.instagram.com/amiruliqbal98_?igsh=Zjc4NHd0bTVqM3Jt"><i
-                                        class="bi bi-instagram text-dark mx-1"></i></a>
-                            </p>
+            <div id="teamCarousel" class="carousel slide">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#teamCarousel" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#teamCarousel" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#teamCarousel" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <!-- Carousel Item 1 -->
+                    <div class="carousel-item active">
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <img src="img/carbonitor/iqbal-pic.svg" alt="Amirul Iqbal"
+                                            class="img-fluid rounded-circle">
+                                        <h3 class="card-title py-2">Amirul Iqbal</h3>
+                                        <p class="card-text">Amirul Iqbal is an Integrity Officer serving at a public
+                                            university in Terengganu, Malaysia, with a background in law. His role in
+                                            Carbonitor involves managing all aspects of Tech Development for this
+                                            project, ensuring that we maintain the highest standards of integrity and
+                                            compliance.</p>
+                                        <p class="socials">
+                                            <a href="https://www.facebook.com/miyoyt?mibextid=ZbWKwL"><i
+                                                    class="bi bi-facebook text-dark mx-1"></i></a>
+                                            <a href="https://www.linkedin.com/in/muhamadamiruliqbal"><i
+                                                    class="bi bi-linkedin text-dark mx-1"></i></a>
+                                            <a href="https://www.instagram.com/amiruliqbal98_?igsh=Zjc4NHd0bTVqM3Jt"><i
+                                                    class="bi bi-instagram text-dark mx-1"></i></a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Carousel Item 2 -->
+                    <div class="carousel-item">
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <img src="img/carbonitor/rico-pic.svg" alt="Yik Wai"
+                                            class="img-fluid rounded-circle">
+                                        <h3 class="card-title py-2">Yik Wai</h3>
+                                        <p class="card-text">Yik Wai is a social entrepreneur who co-founded sport
+                                            social enterprise, Crowdsukan which helps sport industry reach its
+                                            sustainability goals and communications specialist. He is currently one of
+                                            the two Malaysian representatives at UNESCO's Youth and Sport Task Force to
+                                            implement the United Nations Sustainable Development Goals (SDGs) within
+                                            ASEAN region. He is also a freelance journalist who has contributed on
+                                            current affairs analysis from a Southeast Asian perspective for regional
+                                            medias such as the South China Morning Post (SCMP). He wants to actively
+                                            contribute to meeting challenges and creating new opportunities through his
+                                            social entrepreneurship experiences, journalism and sustainable development
+                                            insights.</p>
+                                        <p class="socials">
+                                            <a href="#"><i class="bi bi-facebook text-dark mx-1"></i></a>
+                                            <a href="https://www.linkedin.com/in/yik-wai-chee-306851161/ "><i
+                                                    class="bi bi-linkedin text-dark mx-1"></i></a>
+                                            <a href="#"><i class="bi bi-instagram text-dark mx-1"></i></a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Carousel Item 3 -->
+                    <div class="carousel-item">
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <img src="img/carbonitor/aries-pic.svg" alt="Ariesta"
+                                            class="img-fluid rounded-circle">
+                                        <h3 class="card-title py-2">Ariesta</h3>
+                                        <p class="card-text">Ariesta is an assistant professor of law at Jenderal
+                                            Achmad Yani University in Yogyakarta, Indonesia. He is particularly
+                                            interested and teaches municipal criminal law, international criminal law,
+                                            and cyber law. He is pursuing a Doctor of Philosophy programme at the
+                                            Faculty of Law, University of Malaya, Malaysia. Ariesta has been granted
+                                            research funding by the Ministry of Research, Technology and Higher
+                                            Education (now under the Ministry of Education and Culture) of the Republic
+                                            of Indonesia. Ariesta is a very determined and passionate individual. His
+                                            motivation to contribute to the community stems from his proficient skills
+                                            and aptitude for research.</p>
+                                        <p class="socials">
+                                            <a href="#"><i class="bi bi-facebook text-dark mx-1"></i></a>
+                                            <a href="https://www.linkedin.com/in/ariestawa/"><i
+                                                    class="bi bi-linkedin text-dark mx-1"></i></a>
+                                            <a href="#"><i class="bi bi-instagram text-dark mx-1"></i></a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-4 col-lg-4">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <img src="img/carbonitor/rico-pic.svg" alt="" class="img-fluid rounded-circle">
-                            <h3 class="card-title py-2">Yik Wai</h3>
-                            <p class="card-text">Yik Wai is a social entrepreneur who co-founded sport social
-                                enterprise, Crowdsukan which helps sport industry reach its sustainability goals and
-                                communications specialist. He is currently one of the two Malaysian representatives at
-                                UNESCO's Youth and Sport Task Force to implement the United Nations Sustainable
-                                Development Goals (SDGs) within ASEAN region. He is also a freelance journalist who has
-                                contributed on current affairs analysis from a Southeast Asian perspective for regional
-                                medias such as the South China Morning Post (SCMP). He wants to actively contribute to
-                                meeting challenges and creating new opportunities through his social entrepreneurship
-                                experiences, journalism and sustainable development insights.</p>
-                            <p class="socials">
-                                <a href="#"><i class="bi bi-facebook text-dark mx-1"></i></a>
-                                <a href="https://www.linkedin.com/in/yik-wai-chee-306851161/ "><i
-                                        class="bi bi-linkedin text-dark mx-1"></i></a>
-                                <a href="#"><i class="bi bi-instagram text-dark mx-1"></i></a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 col-lg-4">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <img src="img/carbonitor/aries-pic.svg" alt="" class="img-fluid rounded-circle">
-                            <h3 class="card-title py-2">Ariesta</h3>
-                            <p class="card-text">Ariesta is an assistant professor of law at Jenderal Achmad Yani
-                                University in Yogyakarta, Indonesia. He is particularly interested and teaches municipal
-                                criminal law, international criminal law, and cyber law. He is pursuing a Doctor of
-                                Philosophy programme at the Faculty of Law, University of Malaya, Malaysia. Ariesta has
-                                been granted research funding by the Ministry of Research, Technology and Higher
-                                Education (now under the Ministry of Education and Culture) of the Republic of
-                                Indonesia. Ariesta is a very determined and passionate individual. His motivation to
-                                contribute to the community stems from his proficient skills and aptitude for research.
-                            </p>
-                            <p class="socials">
-                                <a href="#"><i class="bi bi-facebook text-dark mx-1"></i></a>
-                                <a href="https://www.linkedin.com/in/ariestawa/"><i
-                                        class="bi bi-linkedin text-dark mx-1"></i></a>
-                                <a href="#"><i class="bi bi-instagram text-dark mx-1"></i></a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <!-- Carousel Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#teamCarousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#teamCarousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
         </div>
     </section>
