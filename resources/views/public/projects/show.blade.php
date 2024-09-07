@@ -322,6 +322,10 @@
                 </tbody>
             </table>
         </div>
+
+        <div class="mt-10">
+            @livewire('public.projects.comments-section-livewire', compact('project'))
+        </div>
     </div>
 </body>
 
