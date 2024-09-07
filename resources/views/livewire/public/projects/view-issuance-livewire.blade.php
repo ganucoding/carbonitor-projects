@@ -47,6 +47,14 @@
 
             <hr />
 
+            @if ($issuance->eligibilities_corsia_pilot_phase)
+                <div class="eligibilities">
+                    <h5>Eligibilities (CORSIA Pilot Phase)</h5>
+                    Yes
+                </div>
+                <hr />
+            @endif
+
             <div class="history">
                 <h5>History</h5>
                 <ul>
@@ -81,6 +89,10 @@
 
         .issuance-card hr {
             margin: 20px 0;
+        }
+
+        .eligibilities {
+            margin-top: 20px;
         }
 
         .history {
