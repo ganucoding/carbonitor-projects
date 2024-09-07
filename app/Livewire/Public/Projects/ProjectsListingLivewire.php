@@ -23,7 +23,7 @@ class ProjectsListingLivewire extends Component implements HasForms, HasTable
     public function table(Table $table): Table
     {
         return $table
-            ->query(Project::query())
+            ->query(Project::query()->where('is_visible', true))
             ->columns([
                 TextColumn::make('unique_id')
                     ->searchable()

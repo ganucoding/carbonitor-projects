@@ -7,16 +7,14 @@ use App\Filament\Resources\ProjectResource\RelationManagers;
 use App\Filament\Resources\ProjectResource\RelationManagers\CertificationDocumentsRelationManager;
 use App\Filament\Resources\ProjectResource\RelationManagers\IssuancesRelationManager;
 use App\Filament\Resources\ProjectResource\RelationManagers\RetirementsRelationManager;
-use App\Models\Country;
 use App\Models\Project;
-use App\Models\ProjectStatus;
-use App\Models\ProjectType;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -91,6 +89,17 @@ class ProjectResource extends Resource
                                 ->required(),
                         ])
                         ->searchable()
+                        ->columnSpan(['default' => 1, 'md' => 1]),
+
+                    Toggle::make('is_visible')
+                        ->label(__('Visibility'))
+                        ->inline(false)
+                        ->default(true)
+                        ->helperText(__('If disabled (red), the project will not be visible publicly.'))
+                        ->onIcon('heroicon-m-eye')
+                        ->offIcon('heroicon-m-eye-slash')
+                        ->onColor('success')
+                        ->offColor('danger')
                         ->columnSpan(['default' => 1, 'md' => 1]),
                 ])
                 ->columns(['default' => 1, 'md' => 4]),

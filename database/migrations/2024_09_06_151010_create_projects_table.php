@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('project_status_id')->nullable()->constrained('project_statuses')->onDelete('set null');
             $table->foreignId('project_type_id')->nullable()->constrained('project_types')->onDelete('set null');
             $table->foreignId('country_id')->nullable()->constrained('countries')->onDelete('set null');
+            $table->boolean('is_visible')->default(true);
             $table->timestamps();
         });
     }
