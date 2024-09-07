@@ -34,3 +34,9 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get('/link', function () {
+    $target = '/home/username/app_foler_name/storage/app/public';
+    $shortcut = '/home/username/public_html/storage';
+    symlink($target, $shortcut);
+});
