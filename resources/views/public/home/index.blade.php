@@ -57,7 +57,7 @@
                             </a>
                         </li>
                         <li class="nav-item pb-1">
-                            <a class="nav-link" href="{{ route('projects.projects-listing') }}">
+                            <a class="nav-link" href="{{ route('projects.projectsListingLivewire') }}">
                                 <i class="fa-solid fa-tachometer p-2"></i>Our Projects
                             </a>
                         </li>

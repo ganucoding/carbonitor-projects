@@ -276,8 +276,8 @@
         </div>
 
         <div class="mt-4">
-            <a href="{{ route('projects.viewCertificationDocuments', $project) }}" class="btn" target="_blank"
-                rel="noopener noreferrer">
+            <a href="{{ route('projects.viewCertificationDocumentsLivewire', $project) }}" class="btn"
+                target="_blank" rel="noopener noreferrer">
                 View Certification Documents
             </a>
         </div>
