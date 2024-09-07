@@ -47,22 +47,29 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item pb-1">
-                            <a class="nav-link" href="#"><i class="fa-solid fa-house p-2"></i>Home</a>
+                            <a class="nav-link" href="#">
+                                <i class="fa-solid fa-house p-2"></i>Home
+                            </a>
                         </li>
                         <li class="nav-item pb-1">
-                            <a class="nav-link" href="#projects"><i class="fa-solid fa-diagram-project p-2"></i>Our
-                                Objectives</a>
+                            <a class="nav-link" href="#projects">
+                                <i class="fa-solid fa-diagram-project p-2"></i>Our Objectives
+                            </a>
                         </li>
                         <li class="nav-item pb-1">
-                            <a class="nav-link" href="project-listing.html"><i class="bi bi-speedometer p-2"></i>Our
-                                Project</a>
+                            <a class="nav-link" href="{{ route('projects.projects-listing') }}">
+                                <i class="fa-solid fa-tachometer p-2"></i>Our Projects
+                            </a>
                         </li>
                         <li class="nav-item pb-1">
-                            <a class="nav-link" href="#team"><i class="fa-solid fa-people-group p-2"></i>Our Team</a>
+                            <a class="nav-link" href="#team"><i class="fa-solid fa-people-group p-2">
+                                </i>Our Team
+                            </a>
                         </li>
                         <li class="nav-item pb-1">
-                            <a class="nav-link" href="#contact"><i
-                                    class="fa-solid fa-envelopes-bulk p-2"></i>Contact</a>
+                            <a class="nav-link" href="#contact"><i class="fa-solid fa-envelopes-bulk p-2"></i>
+                                Contact
+                            </a>
                         </li>
                     </ul>
                 </div>

@@ -6,21 +6,18 @@ use App\Livewire\Public\Projects\ProjectsListingLivewire;
 use App\Livewire\Public\Projects\ViewCertificationDocumentsLivewire;
 use Illuminate\Support\Facades\Route;
 
-/* Laravel */
+/* Route::get('/', function () {
+    return view('welcome');
+}); */
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/about', [HomeController::class, 'about'])->name('home.about');
 Route::get('/projects/learn-more', [HomeController::class, 'projectsLearnMore'])->name('home.projects.learn-more');
-
 Route::resource('projects', ProjectController::class)->only('show');
 
 /* Livewire */
-Route::get('/projects-listing', ProjectsListingLivewire::class);
+Route::get('/projects-listing', ProjectsListingLivewire::class)->name('projects.projects-listing');
 Route::get('/view-certification-documents/{project}', ViewCertificationDocumentsLivewire::class)->name('projects.viewCertificationDocuments');
-
-/* Route::get('/', function () {
-    return view('welcome');
-}); */
 
 Route::middleware([
     'auth:sanctum',
