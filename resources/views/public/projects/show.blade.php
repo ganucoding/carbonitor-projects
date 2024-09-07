@@ -268,38 +268,8 @@
         </div>
 
         <div class="table-responsive mt-4">
-            <h5>Issuance List</h5>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Vintage</th>
-                        <th>Quantity</th>
-                        <th>Product</th>
-                        <th>Issuance Date</th>
-                        <th class="text-center actions-sticky">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($project->issuances as $issuance)
-                        <tr>
-                            <td>{{ $issuance->vintage }}</td>
-                            <td>{{ $issuance->quantity }}</td>
-                            <td>{{ $issuance->product }}</td>
-                            <td>{{ \Carbon\Carbon::parse($issuance->issuance_date)->format('M d, Y') }}</td>
-                            <td class="text-center actions-sticky">
-                                <a href="{{ route('projects.viewIssuanceLivewire', ['project' => $project, 'issuance' => $issuance]) }}"
-                                    class="btn" target="_blank" rel="noopener noreferrer">
-                                    View
-                                </a>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="5" class="text-center">There are no issuances.</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
+            <h5>Issuances List</h5>
+            @livewire('public.projects.projects-listing.issuances-table-livewire')
         </div>
 
         <div class="mt-4">
@@ -310,44 +280,8 @@
         </div>
 
         <div class="table-responsive mt-4">
-            <h5>Retirements</h5>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Vintage</th>
-                        <th>Serial Number</th>
-                        <th>Quantity</th>
-                        <th>Product</th>
-                        <th>Status</th>
-                        <th>Note</th>
-                        <th class="text-center actions-sticky">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($project->retirements as $retirement)
-                        <tr>
-                            <td>{{ \Carbon\Carbon::parse($retirement->date)->format('M d, Y') }}</td>
-                            <td>{{ $retirement->vintage }}</td>
-                            <td>{{ $retirement->serial_number }}</td>
-                            <td>{{ number_format($retirement->quantity) }}</td>
-                            <td>{{ $retirement->product }}</td>
-                            <td>{{ $project->projectStatus?->name }}</td>
-                            <td>{{ $retirement->note }}</td>
-                            <td class="text-center actions-sticky">
-                                <a href="{{ route('projects.viewRetirementLivewire', ['project' => $project, 'retirement' => $retirement]) }}"
-                                    class="btn" target="_blank" rel="noopener noreferrer">
-                                    View
-                                </a>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="8" class="text-center">There are no retirements.</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
+            <h5>Retirements List</h5>
+            @livewire('public.projects.projects-listing.retirements-table-livewire')
         </div>
 
         <div class="mt-10">
