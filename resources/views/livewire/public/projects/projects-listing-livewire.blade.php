@@ -1,11 +1,13 @@
 <div>
-    <div class="header-container">
+    <div class="header-container md:px-[63px]">
         <h3 class="title">Our Projects</h3>
         <a href="/admin/login" class="btn">
             Admin Login
         </a>
     </div>
-    {{ $this->table }}
+    <div class="md:px-[63px]">
+        {{ $this->table }}
+    </div>
 
     <style>
         .header-container {

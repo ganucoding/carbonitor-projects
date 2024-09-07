@@ -30,6 +30,7 @@ class ProjectsListingLivewire extends Component implements HasForms, HasTable
                     ->sortable(),
                 TextColumn::make('name')
                     ->searchable()
+                    ->wrap()
                     ->sortable(),
                 TextColumn::make('projectStatus.name')
                     ->searchable()
