@@ -1,6 +1,6 @@
 <div>
     <div class="header-container md:px-[63px]">
-        <h3 class="title">Our Projectsz</h3>
+        <h3 class="title">Our Projects</h3>
         <a href="/admin/login" class="btn">
             Admin Login
         </a>
