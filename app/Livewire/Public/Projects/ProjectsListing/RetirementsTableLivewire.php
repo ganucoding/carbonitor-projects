@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Public\Projects\ProjectsListing;
 
+use App\Models\Project;
 use App\Models\Retirement;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -19,10 +20,12 @@ class RetirementsTableLivewire extends Component implements HasForms, HasTable
     use InteractsWithTable;
     use InteractsWithForms;
 
+    public Project $project;
+
     public function table(Table $table): Table
     {
         return $table
-            ->query(Retirement::query())
+            ->query(Retirement::where('project_id', $this->project->id))
             ->columns([
                 TextColumn::make('date')
                     ->dateTime()

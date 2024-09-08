@@ -269,7 +269,7 @@
 
         <div class="table-responsive mt-4">
             <h5>Issuances List</h5>
-            @livewire('public.projects.projects-listing.issuances-table-livewire')
+            @livewire('public.projects.projects-listing.issuances-table-livewire', compact('project'))
         </div>
 
         <div class="mt-4">
@@ -281,7 +281,7 @@
 
         <div class="table-responsive mt-4">
             <h5>Retirements List</h5>
-            @livewire('public.projects.projects-listing.retirements-table-livewire')
+            @livewire('public.projects.projects-listing.retirements-table-livewire', compact('project'))
         </div>
 
         <div class="mt-10">

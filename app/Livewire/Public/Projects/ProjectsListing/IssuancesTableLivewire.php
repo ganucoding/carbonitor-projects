@@ -3,6 +3,7 @@
 namespace App\Livewire\Public\Projects\ProjectsListing;
 
 use App\Models\Issuance;
+use App\Models\Project;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Support\Enums\MaxWidth;
@@ -19,10 +20,12 @@ class IssuancesTableLivewire extends Component implements HasForms, HasTable
     use InteractsWithTable;
     use InteractsWithForms;
 
+    public Project $project;
+
     public function table(Table $table): Table
     {
         return $table
-            ->query(Issuance::query())
+            ->query(Issuance::query()->where('project_id', $this->project->id))
             ->columns([
                 TextColumn::make('vintage')
                     ->searchable()
