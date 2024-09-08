@@ -40,8 +40,8 @@ class ProjectResource extends Resource
             Section::make(__('Project Information'))
                 ->schema([
                     TextInput::make('unique_id')
-                        ->label(__('Unique ID'))
-                        ->placeholder(__('Enter Unique ID'))
+                        ->label(__('ID'))
+                        ->placeholder(__('Enter Project ID'))
                         ->nullable()
                         ->maxLength(255)
                         ->columnSpan(['default' => 1, 'md' => 1]),
@@ -198,6 +198,7 @@ class ProjectResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('unique_id')
+                    ->label(__('ID'))
                     ->searchable()
                     ->wrap()
                     ->sortable(),
