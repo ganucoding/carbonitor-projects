@@ -257,7 +257,7 @@
                     <!-- Carousel Item 1 -->
                     <div class="carousel-item active">
                         <div class="row justify-content-center">
-                            <div class="col-12 col-md-4 col-lg-4">
+                            <div class="col-8">
                                 <div class="card text-center">
                                     <div class="card-body">
                                         <img src="img/carbonitor/iqbal-pic.svg" alt="Amirul Iqbal"
@@ -285,7 +285,7 @@
                     <!-- Carousel Item 2 -->
                     <div class="carousel-item">
                         <div class="row justify-content-center">
-                            <div class="col-12 col-md-4 col-lg-4">
+                            <div class="col-8">
                                 <div class="card text-center">
                                     <div class="card-body">
                                         <img src="img/carbonitor/rico-pic.svg" alt="Yik Wai"
@@ -317,7 +317,7 @@
                     <!-- Carousel Item 3 -->
                     <div class="carousel-item">
                         <div class="row justify-content-center">
-                            <div class="col-12 col-md-4 col-lg-4">
+                            <div class="col-8">
                                 <div class="card text-center">
                                     <div class="card-body">
                                         <img src="img/carbonitor/aries-pic.svg" alt="Ariesta"
