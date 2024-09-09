@@ -28,7 +28,7 @@ class RetirementsTableLivewire extends Component implements HasForms, HasTable
             ->query(Retirement::where('project_id', $this->project->id))
             ->columns([
                 TextColumn::make('date')
-                    ->dateTime()
+                    ->date()
                     ->searchable()
                     ->wrap()
                     ->sortable(),

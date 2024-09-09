@@ -40,7 +40,7 @@ class IssuancesTableLivewire extends Component implements HasForms, HasTable
                     ->wrap()
                     ->sortable(),
                 TextColumn::make('issuance_date')
-                    ->dateTime()
+                    ->date()
                     ->sortable()
                     ->toggleable(),
             ])
