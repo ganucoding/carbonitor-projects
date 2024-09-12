@@ -21,6 +21,7 @@ class CommentsSectionLivewire extends Component
     public function loadComments()
     {
         $this->comments = $this->project->comments()
+            ->approved() // Apply 'approved' scope
             ->orderBy('created_at', 'desc')
             ->get();
     }

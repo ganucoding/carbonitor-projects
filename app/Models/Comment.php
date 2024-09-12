@@ -20,4 +20,15 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class, 'status_changed_by');
     }
+
+    /**
+     * Scope a query to only include approved comments.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeApproved($query)
+    {
+        return $query->where('status', 'approved');
+    }
 }
