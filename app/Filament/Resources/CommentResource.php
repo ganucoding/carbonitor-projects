@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CommentResource\Pages;
 use App\Filament\Resources\CommentResource\RelationManagers;
+use App\Mail\CommentStatusChanged;
 use App\Models\Comment;
 use App\Models\User;
 use Filament\Forms;
@@ -13,6 +14,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Mail;
 
 class CommentResource extends Resource
 {
@@ -112,7 +114,7 @@ class CommentResource extends Resource
                 // Tables\Actions\EditAction::make(),
                 Tables\Actions\Action::make('approve')
                     ->label('Approve')
-                    ->color('success') // Green color
+                    ->color('success')
                     ->icon('heroicon-o-check')
                     ->requiresConfirmation()
                     ->action(function (Comment $record) {
@@ -120,10 +122,13 @@ class CommentResource extends Resource
                             'status' => 'approved',
                             'status_changed_by' => auth()->user()->id,
                         ]);
+
+                        // Send email
+                        Mail::to($record->email)->send(new CommentStatusChanged('approved', $record));
                     }),
                 Tables\Actions\Action::make('reject')
                     ->label('Reject')
-                    ->color('danger') // Red color
+                    ->color('danger')
                     ->icon('heroicon-o-x-circle')
                     ->requiresConfirmation()
                     ->action(function (Comment $record) {
@@ -131,6 +136,9 @@ class CommentResource extends Resource
                             'status' => 'rejected',
                             'status_changed_by' => auth()->user()->id,
                         ]);
+
+                        // Send email
+                        Mail::to($record->email)->send(new CommentStatusChanged('rejected', $record));
                     }),
             ])
             ->bulkActions([

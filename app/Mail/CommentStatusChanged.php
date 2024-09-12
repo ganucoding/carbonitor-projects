@@ -13,12 +13,20 @@ class CommentStatusChanged extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $status;
+    public $comment;
+
     /**
      * Create a new message instance.
+     *
+     * @param  string  $status
+     * @param  Comment  $comment
+     * @return void
      */
-    public function __construct()
+    public function __construct($status, $comment)
     {
-        //
+        $this->status = $status;
+        $this->comment = $comment;
     }
 
     /**
@@ -37,7 +45,11 @@ class CommentStatusChanged extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.comment_status_changed',
+            with: [
+                'status' => $this->status,
+                'comment' => $this->comment,
+            ]
         );
     }
 
