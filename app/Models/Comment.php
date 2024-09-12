@@ -9,15 +9,10 @@ class Comment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['project_id', 'username', 'email', 'comment', 'is_approved', 'approved_by'];
+    protected $fillable = ['project_id', 'username', 'email', 'comment'];
 
     public function project()
     {
         return $this->belongsTo(Project::class);
-    }
-
-    public function approver()
-    {
-        return $this->belongsTo(User::class, 'approved_by');
     }
 }
