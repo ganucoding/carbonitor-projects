@@ -166,6 +166,18 @@ class ProjectResource extends Resource
                         ->numeric()
                         ->columnSpan(1),
 
+                    Select::make('metric_id')
+                        ->label(__('Annual Estimated Credits (Metric)'))
+                        ->placeholder(__('Select Metric'))
+                        ->relationship(name: 'metric', titleAttribute: 'name')
+                        ->preload()
+                        ->createOptionForm([
+                            TextInput::make('name')
+                                ->required(),
+                        ])
+                        ->searchable()
+                        ->columnSpan(1),
+
                     Textarea::make('description')
                         ->label(__('Description'))
                         ->nullable()

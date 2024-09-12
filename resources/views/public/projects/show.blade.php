@@ -218,7 +218,11 @@
                                     </tr>
                                     <tr>
                                         <th>Annual Estimated Credits</th>
-                                        <td>{{ number_format($project->projectDetail?->annual_estimated_credits) }}
+                                        <td>
+                                            {{ number_format($project->projectDetail?->annual_estimated_credits) }}
+                                            @if ($project->projectDetail?->metric)
+                                                ({{ $project->projectDetail->metric->name }})
+                                            @endif
                                         </td>
                                     </tr>
                                     <tr>

@@ -34,4 +34,9 @@ class ProjectDetail extends Model
     {
         return $this->belongsTo(Project::class);
     }
+
+    public function metric()
+    {
+        return $this->belongsTo(Metric::class);
+    }
 }
