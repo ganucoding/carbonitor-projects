@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Metric extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name'];
+
+    public function metrics()
+    {
+        return $this->hasMany(ProjectDetail::class, 'metric_id');
+    }
 }

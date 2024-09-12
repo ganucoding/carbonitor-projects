@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('metrics', function (Blueprint $table) {
             $table->id();
+            $table->string('name'); // e.g., kg, g, lb
             $table->timestamps();
         });
     }
