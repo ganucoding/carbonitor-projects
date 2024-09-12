@@ -19,6 +19,7 @@ class ProjectDetail extends Model
         'crediting_period_start',
         'crediting_period_end',
         'annual_estimated_credits',
+        'metric_id',
         'description',
         'summary',
         'sources',
