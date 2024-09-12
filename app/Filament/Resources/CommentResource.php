@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\CommentResource\Pages;
 use App\Filament\Resources\CommentResource\RelationManagers;
 use App\Models\Comment;
+use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -33,19 +34,36 @@ class CommentResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('project_id')
-                    ->required()
-                    ->numeric(),
+                Forms\Components\Select::make('project_id')
+                    ->label(__('Project Name'))
+                    ->placeholder(__('Select Project'))
+                    ->relationship(name: 'project', titleAttribute: 'name')
+                    ->preload()
+                    ->createOptionForm([
+                        Forms\Components\TextInput::make('name')
+                            ->required(),
+                    ])
+                    ->searchable()
+                    ->disabled()
+                    ->columnSpanFull(),
                 Forms\Components\TextInput::make('username')
-                    ->required()
+                    ->disabled()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('email')
                     ->email()
-                    ->required()
+                    ->disabled()
                     ->maxLength(255),
                 Forms\Components\Textarea::make('comment')
-                    ->required()
+                    ->disabled()
                     ->columnSpanFull(),
+                Forms\Components\Select::make('status')
+                    ->label('Status')
+                    ->options([
+                        'pending' => 'Pending',
+                        'approved' => 'Approved',
+                        'rejected' => 'Rejected',
+                    ])
+                    ->disabled(),
             ]);
     }
 
@@ -60,6 +78,24 @@ class CommentResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('status')
+                    ->label('Status')
+                    ->searchable()
+                    ->badge()
+                    ->color(fn(string $state): string => match ($state) {
+                        'pending' => 'warning',
+                        'approved' => 'success',
+                        'rejected' => 'danger',
+                    })
+                    ->formatStateUsing(function ($state) {
+                        return $state ? ucwords($state) : 'N/A';
+                    }),
+                Tables\Columns\TextColumn::make('status_changed_by')
+                    ->label('Status Changed By')
+                    ->searchable()
+                    ->formatStateUsing(function ($state) {
+                        return $state ? User::find($state)->name : 'N/A';
+                    }),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -73,7 +109,29 @@ class CommentResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                // Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('approve')
+                    ->label('Approve')
+                    ->color('success') // Green color
+                    ->icon('heroicon-o-check')
+                    ->requiresConfirmation()
+                    ->action(function (Comment $record) {
+                        $record->update([
+                            'status' => 'approved',
+                            'status_changed_by' => auth()->user()->id,
+                        ]);
+                    }),
+                Tables\Actions\Action::make('reject')
+                    ->label('Reject')
+                    ->color('danger') // Red color
+                    ->icon('heroicon-o-x-circle')
+                    ->requiresConfirmation()
+                    ->action(function (Comment $record) {
+                        $record->update([
+                            'status' => 'rejected',
+                            'status_changed_by' => auth()->user()->id,
+                        ]);
+                    }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
