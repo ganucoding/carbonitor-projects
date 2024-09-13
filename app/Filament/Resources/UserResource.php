@@ -38,8 +38,11 @@ class UserResource extends Resource
                     ->maxLength(255),
                 // Forms\Components\DateTimePicker::make('email_verified_at'),
                 Forms\Components\TextInput::make('password')
+                    ->label(__('Password'))
                     ->password()
-                    ->required()
+                    ->dehydrateStateUsing(fn(string $state): string => bcrypt($state))
+                    ->dehydrated(fn(?string $state): bool => filled($state))
+                    ->required(fn(string $operation): bool => $operation === 'create')
                     ->maxLength(255),
                 /* Forms\Components\Textarea::make('two_factor_secret')
                     ->columnSpanFull(),
@@ -50,8 +53,7 @@ class UserResource extends Resource
                     ->numeric(),
                 Forms\Components\TextInput::make('profile_photo_path')
                     ->maxLength(2048), */
-                Forms\Components\Toggle::make('is_approved')
-                    ->required(),
+                Forms\Components\Toggle::make('is_approved'),
             ]);
     }
 

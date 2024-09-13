@@ -59,7 +59,6 @@
         }
 
         .project-name {
-            font-size: 16px;
             font-weight: bold;
             color: #333;
             margin: 15px 0;
@@ -95,7 +94,7 @@
             <div class="comment">
                 {!! nl2br(e($comment->comment)) !!}
             </div>
-            <p class="project-name">Project Name: {{ $comment->project?->name }}</p>
+            Project Name: <span class="project-name">{{ $comment->project?->name }}</span>
         </div>
 
         <p>If you have any questions or need further assistance, feel free to reply to this email.</p>
