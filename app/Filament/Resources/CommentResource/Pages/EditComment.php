@@ -40,13 +40,6 @@ class EditComment extends EditRecord
 
     protected function getSaveFormAction(): Action
     {
-        parent::getSaveFormAction()
-            ->disabled(function (): bool {
-                $status = $this->data['status'] ?? '';
-                return in_array($status, ['approved', 'rejected']); // Disable the save button if status is 'approved' or 'rejected'
-            });
-
-        // Create a new save action with custom confirmation modal settings
         return Action::make('save')
             ->label(__('Save Changes'))
             ->requiresConfirmation()
@@ -55,6 +48,10 @@ class EditComment extends EditRecord
             ->modalSubmitActionLabel('Yes, save changes and notify via email')
             ->modalIconColor('warning')
             ->action(fn() => $this->save())
-            ->keyBindings(['mod+s']);
+            ->keyBindings(['mod+s'])
+            ->disabled(function (): bool {
+                $status = $this->record['status'] ?? '';
+                return in_array($status, ['approved', 'rejected']);
+            });
     }
 }

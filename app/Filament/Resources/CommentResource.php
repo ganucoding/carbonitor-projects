@@ -30,7 +30,7 @@ class CommentResource extends Resource
     {
         return false;
     }
-    protected static ?string $navigationGroup = 'Extras';
+    protected static ?string $navigationGroup = 'Main';
 
     public static function form(Form $form): Form
     {
@@ -75,8 +75,10 @@ class CommentResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('project_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('project.name')
+                    ->label('Project Name')
+                    ->searchable()
+                    ->wrap()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('username')
                     ->searchable(),
@@ -101,11 +103,13 @@ class CommentResource extends Resource
                         return $state ? User::find($state)->name : 'N/A';
                     }),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
+                    ->label('Comment Created At')
+                    ->date()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
+                    ->label('Status Updated At')
+                    ->date()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])

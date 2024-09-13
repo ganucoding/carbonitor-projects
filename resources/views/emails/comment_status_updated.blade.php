@@ -69,7 +69,7 @@
             font-size: 0.9em;
             color: #666;
             margin-top: 20px;
-            text-align: center;
+            text-align: left;
         }
 
         .footer p {
@@ -93,7 +93,7 @@
         <div style="margin: 21px 0px;">
             <p>Here’s what you said:</p>
             <div class="comment">
-                {{ $comment->comment }}
+                {!! nl2br(e($comment->comment)) !!}
             </div>
             <p class="project-name">Project Name: {{ $comment->project?->name }}</p>
         </div>
@@ -101,7 +101,7 @@
         <p>If you have any questions or need further assistance, feel free to reply to this email.</p>
         <p>Thank you for being a valued member of our community!</p>
         <div class="footer">
-            <p>Best regards,<br>Carbonitor Team</p>
+            <p>Best regards,<br><b>Carbonitor Team</b></p>
         </div>
     </div>
 </body>
