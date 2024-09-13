@@ -13,12 +13,19 @@ use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Contracts\View\View;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ProjectsListingLivewire extends Component implements HasForms, HasTable
 {
     use InteractsWithTable;
     use InteractsWithForms;
+
+    #[On('display-flash-message')]
+    public function displayFlashMessage()
+    {
+        session()->flash('success', 'Your comment was submitted successfully! Please check your email for updates.');
+    }
 
     public function table(Table $table): Table
     {

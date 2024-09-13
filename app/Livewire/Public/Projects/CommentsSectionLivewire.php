@@ -3,11 +3,13 @@
 namespace App\Livewire\Public\Projects;
 
 use App\Filament\Resources\CommentResource;
+use App\Mail\CommentSubmitted;
 use Livewire\Component;
 use App\Models\Project;
 use App\Models\User;
 use Filament\Notifications\Actions\Action;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Mail;
 
 class CommentsSectionLivewire extends Component
 {
@@ -65,6 +67,12 @@ class CommentsSectionLivewire extends Component
                     ])
                     ->sendToDatabase($recipient);
             }
+
+            // Send email to commenter's email
+            Mail::to($comment->email)->send(new CommentSubmitted($comment));
+
+            // Display flash message in projects-listing-livewire
+            $this->dispatch('display-flash-message')->to(ProjectsListingLivewire::class);
 
             // Clear form fields if comment creation is successful
             $this->username = '';

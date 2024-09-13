@@ -45,7 +45,11 @@
                         @enderror
                     </div>
 
-                    <button wire:click="addComment" class="submit-button">Add Comment</button>
+                    <button wire:loading.remove wire:click="addComment" class="submit-button">Add Comment</button>
+
+                    <div wire:loading class="p-2 bg-yellow-100 border border-yellow-300 text-yellow-800 rounded-lg">
+                        Your request is being processed. Please wait a moment...
+                    </div>
                 </div>
             </div>
         </div>
