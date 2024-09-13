@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('comments', function (Blueprint $table) {
             $table->string('status')->default('pending');
-            $table->foreignId('status_changed_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('status_updated_by')->nullable()->constrained('users')->onDelete('set null');
         });
     }
 
@@ -23,8 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('comments', function (Blueprint $table) {
-            $table->dropForeign(['status_changed_by']);
-            $table->dropColumn(['status', 'status_changed_by']);
+            $table->dropForeign(['status_updated_by']);
+            $table->dropColumn(['status', 'status_updated_by']);
         });
     }
 };

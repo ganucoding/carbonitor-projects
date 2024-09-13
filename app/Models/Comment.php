@@ -9,16 +9,16 @@ class Comment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['project_id', 'username', 'email', 'comment', 'status', 'status_changed_by'];
+    protected $fillable = ['project_id', 'username', 'email', 'comment', 'status', 'status_updated_by'];
 
     public function project()
     {
         return $this->belongsTo(Project::class);
     }
 
-    public function statusChanger()
+    public function statusUpdatedBy()
     {
-        return $this->belongsTo(User::class, 'status_changed_by');
+        return $this->belongsTo(User::class, 'status_updated_by');
     }
 
     /**

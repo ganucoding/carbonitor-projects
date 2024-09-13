@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\CommentResource\Pages;
 
 use App\Filament\Resources\CommentResource;
-use App\Mail\CommentStatusChanged;
+use App\Mail\CommentStatusUpdated;
 use App\Models\User;
 use Filament\Actions;
 use Filament\Notifications\Actions\Action;
@@ -24,16 +24,18 @@ class EditComment extends EditRecord
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        // Send email
-        $record = $this->getRecord();
-        $email = $record->email;
-        $status = $data['status'];
-        $comment = $record;
-        Mail::to($email)->send(new CommentStatusChanged($status, $comment));
-
-        // Set status_changed_by
-        $data['status_changed_by'] = auth()->user()->id;
+        // Set status_updated_by = current logged-in user
+        $data['status_updated_by'] = auth()->user()->id;
 
         return $data;
+    }
+
+    protected function afterSave(): void
+    {
+        // Runs after the form fields are saved to the database
+
+        // Send email
+        $record = $this->getRecord();
+        Mail::to($record->email)->send(new CommentStatusUpdated($record));
     }
 }

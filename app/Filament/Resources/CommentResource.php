@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CommentResource\Pages;
 use App\Filament\Resources\CommentResource\RelationManagers;
-use App\Mail\CommentStatusChanged;
+use App\Mail\CommentStatusUpdated;
 use App\Models\Comment;
 use App\Models\User;
 use Filament\Forms;
@@ -56,6 +56,8 @@ class CommentResource extends Resource
                     ->disabled()
                     ->maxLength(255),
                 Forms\Components\Textarea::make('comment')
+                    ->rows(3)
+                    ->autosize()
                     ->disabled()
                     ->columnSpanFull(),
                 Forms\Components\Select::make('status')
@@ -92,8 +94,8 @@ class CommentResource extends Resource
                     ->formatStateUsing(function ($state) {
                         return $state ? ucwords($state) : 'N/A';
                     }),
-                Tables\Columns\TextColumn::make('status_changed_by')
-                    ->label('Status Changed By')
+                Tables\Columns\TextColumn::make('status_updated_by')
+                    ->label('Status Updated By')
                     ->searchable()
                     ->formatStateUsing(function ($state) {
                         return $state ? User::find($state)->name : 'N/A';
@@ -120,11 +122,11 @@ class CommentResource extends Resource
                     ->action(function (Comment $record) {
                         $record->update([
                             'status' => 'approved',
-                            'status_changed_by' => auth()->user()->id,
+                            'status_updated_by' => auth()->user()->id,
                         ]);
 
                         // Send email
-                        Mail::to($record->email)->send(new CommentStatusChanged('approved', $record));
+                        Mail::to($record->email)->send(new CommentStatusUpdated($record));
                     }),
                 Tables\Actions\Action::make('reject')
                     ->label('Reject')
@@ -134,11 +136,11 @@ class CommentResource extends Resource
                     ->action(function (Comment $record) {
                         $record->update([
                             'status' => 'rejected',
-                            'status_changed_by' => auth()->user()->id,
+                            'status_updated_by' => auth()->user()->id,
                         ]);
 
                         // Send email
-                        Mail::to($record->email)->send(new CommentStatusChanged('rejected', $record));
+                        Mail::to($record->email)->send(new CommentStatusUpdated($record));
                     }),
             ])
             ->bulkActions([

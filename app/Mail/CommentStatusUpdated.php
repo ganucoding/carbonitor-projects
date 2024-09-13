@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Comment;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -9,12 +10,11 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class CommentStatusChanged extends Mailable
+class CommentStatusUpdated extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $status;
-    public $comment;
+    public Comment $comment;
 
     /**
      * Create a new message instance.
@@ -23,9 +23,8 @@ class CommentStatusChanged extends Mailable
      * @param  Comment  $comment
      * @return void
      */
-    public function __construct($status, $comment)
+    public function __construct($comment)
     {
-        $this->status = $status;
         $this->comment = $comment;
     }
 
@@ -35,7 +34,7 @@ class CommentStatusChanged extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Comment Status Changed',
+            subject: 'Comment Status Updated',
         );
     }
 
@@ -45,9 +44,8 @@ class CommentStatusChanged extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.comment_status_changed',
+            view: 'emails.comment_status_updated',
             with: [
-                'status' => $this->status,
                 'comment' => $this->comment,
             ]
         );
