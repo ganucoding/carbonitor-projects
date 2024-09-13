@@ -65,7 +65,7 @@ class CommentResource extends Resource
                         'approved' => 'Approved',
                         'rejected' => 'Rejected',
                     ])
-                    ->disabled(),
+                    ->disabled(fn($record) => in_array($record->status, ['approved', 'rejected'])),
             ]);
     }
 

@@ -71,4 +71,9 @@ class User extends Authenticatable implements FilamentUser
             'password' => 'hashed',
         ];
     }
+
+    public function scopeIsApproved($query)
+    {
+        return $query->where('is_approved', true);
+    }
 }
