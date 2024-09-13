@@ -4,10 +4,8 @@ namespace App\Filament\Resources\CommentResource\Pages;
 
 use App\Filament\Resources\CommentResource;
 use App\Mail\CommentStatusUpdated;
-use App\Models\User;
 use Filament\Actions;
-use Filament\Notifications\Actions\Action;
-use Filament\Notifications\Notification;
+use Filament\Actions\Action;
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Support\Facades\Mail;
 
@@ -32,10 +30,31 @@ class EditComment extends EditRecord
 
     protected function afterSave(): void
     {
-        // Runs after the form fields are saved to the database
-
-        // Send email
         $record = $this->getRecord();
-        Mail::to($record->email)->send(new CommentStatusUpdated($record));
+
+        // Check if the status is 'approved' or 'rejected'
+        if (in_array($record->status, ['approved', 'rejected'])) {
+            Mail::to($record->email)->send(new CommentStatusUpdated($record)); // Send email to commenter's email
+        }
+    }
+
+    protected function getSaveFormAction(): Action
+    {
+        parent::getSaveFormAction()
+            ->disabled(function (): bool {
+                $status = $this->data['status'] ?? '';
+                return in_array($status, ['approved', 'rejected']); // Disable the save button if status is 'approved' or 'rejected'
+            });
+
+        // Create a new save action with custom confirmation modal settings
+        return Action::make('save')
+            ->label(__('Save Changes'))
+            ->requiresConfirmation()
+            ->modalHeading('Confirm Save')
+            ->modalDescription('Are you sure you want to save these changes? If the status is updated, an email will be sent to the commenter.')
+            ->modalSubmitActionLabel('Yes, save changes and notify via email')
+            ->modalIconColor('warning')
+            ->action(fn() => $this->save())
+            ->keyBindings(['mod+s']);
     }
 }

@@ -113,34 +113,37 @@ class CommentResource extends Resource
                 //
             ])
             ->actions([
-                // Tables\Actions\EditAction::make(),
                 Tables\Actions\Action::make('approve')
                     ->label('Approve')
                     ->color('success')
                     ->icon('heroicon-o-check')
                     ->requiresConfirmation()
+                    ->modalHeading('Approve Comment')
+                    ->modalDescription('Are you sure you want to approve this comment? This action cannot be undone, and the user will be notified via email.')
+                    ->modalSubmitActionLabel('Yes, approve and notify via email')
                     ->action(function (Comment $record) {
                         $record->update([
                             'status' => 'approved',
                             'status_updated_by' => auth()->user()->id,
                         ]);
 
-                        // Send email
-                        Mail::to($record->email)->send(new CommentStatusUpdated($record));
+                        Mail::to($record->email)->send(new CommentStatusUpdated($record)); // Send email to commenter's email
                     }),
                 Tables\Actions\Action::make('reject')
                     ->label('Reject')
                     ->color('danger')
                     ->icon('heroicon-o-x-circle')
                     ->requiresConfirmation()
+                    ->modalHeading('Reject Comment')
+                    ->modalDescription('Are you sure you want to reject this comment? This action cannot be undone, and the user will be notified via email.')
+                    ->modalSubmitActionLabel('Yes, reject and notify via email')
                     ->action(function (Comment $record) {
                         $record->update([
                             'status' => 'rejected',
                             'status_updated_by' => auth()->user()->id,
                         ]);
 
-                        // Send email
-                        Mail::to($record->email)->send(new CommentStatusUpdated($record));
+                        Mail::to($record->email)->send(new CommentStatusUpdated($record)); // Send email to commenter's email
                     }),
             ])
             ->bulkActions([
