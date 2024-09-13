@@ -73,11 +73,11 @@ class ProjectsListingLivewire extends Component implements HasForms, HasTable
             ->actions([
                 ViewAction::make('viewProjectDetail')
                     ->modalContent(fn($record) => view('public.projects.show', ['project' => $record]))
-                    ->modalWidth(MaxWidth::MaxContent),
+                    ->modalWidth(MaxWidth::SevenExtraLarge),
                 ViewAction::make('viewCommentsSection')
                     ->label('Comment')
                     ->modalContent(fn($record) => view('public.projects.livewire-comments-section', ['project' => $record]))
-                    ->modalWidth(MaxWidth::MaxContent)
+                    ->modalWidth(MaxWidth::SevenExtraLarge)
                     ->icon('heroicon-m-chat-bubble-oval-left-ellipsis'),
             ])
             ->bulkActions([
