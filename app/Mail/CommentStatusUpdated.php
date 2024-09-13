@@ -34,7 +34,7 @@ class CommentStatusUpdated extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Comment Status Updated',
+            subject: 'Comment ' . ucfirst($this->comment->status),
         );
     }
 
