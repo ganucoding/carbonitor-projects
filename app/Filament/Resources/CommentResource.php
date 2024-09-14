@@ -86,6 +86,7 @@ class CommentResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status')
                     ->label('Status')
+                    ->sortable()
                     ->searchable()
                     ->badge()
                     ->color(fn(string $state): string => match ($state) {

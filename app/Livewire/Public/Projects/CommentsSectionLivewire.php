@@ -10,13 +10,21 @@ use App\Models\User;
 use Filament\Notifications\Actions\Action;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Mail;
+use Livewire\Attributes\Validate;
 
 class CommentsSectionLivewire extends Component
 {
     public Project $project;
+
     public $comments;
+
+    #[Validate('required')]
     public $username;
+
+    #[Validate('required')]
     public $email;
+
+    #[Validate('required')]
     public $comment;
 
     public function mount()
@@ -34,6 +42,8 @@ class CommentsSectionLivewire extends Component
 
     public function addComment()
     {
+        $this->validate();
+
         // Prepare the data for the new comment
         $data = [
             'username' => $this->username,

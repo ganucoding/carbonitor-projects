@@ -21,35 +21,37 @@
                 <div class="comment-form-card">
                     <h2 class="section-title">Add a Comment</h2>
 
-                    <div class="form-group">
-                        <label for="username" class="form-label">Username:</label>
-                        <input type="text" id="username" wire:model.defer="username" class="form-input">
-                        @error('username')
-                            <span class="error-message">{{ $message }}</span>
-                        @enderror
-                    </div>
+                    <form wire:submit.prevent="addComment">
+                        <div class="form-group">
+                            <label for="username" class="form-label">Username:</label>
+                            <input type="text" id="username" wire:model="username" class="form-input">
+                            @error('username')
+                                <span class="error-message">{{ $message }}</span>
+                            @enderror
+                        </div>
 
-                    <div class="form-group">
-                        <label for="email" class="form-label">Email:</label>
-                        <input type="email" id="email" wire:model.defer="email" class="form-input">
-                        @error('email')
-                            <span class="error-message">{{ $message }}</span>
-                        @enderror
-                    </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email:</label>
+                            <input type="email" id="email" wire:model="email" class="form-input">
+                            @error('email')
+                                <span class="error-message">{{ $message }}</span>
+                            @enderror
+                        </div>
 
-                    <div class="form-group">
-                        <label for="comment" class="form-label">Comment:</label>
-                        <textarea id="comment" wire:model.defer="comment" class="form-textarea"></textarea>
-                        @error('comment')
-                            <span class="error-message">{{ $message }}</span>
-                        @enderror
-                    </div>
+                        <div class="form-group">
+                            <label for="comment" class="form-label">Comment:</label>
+                            <textarea id="comment" wire:model="comment" class="form-textarea"></textarea>
+                            @error('comment')
+                                <span class="error-message">{{ $message }}</span>
+                            @enderror
+                        </div>
 
-                    <button wire:loading.remove wire:click="addComment" class="submit-button">Add Comment</button>
+                        <button type="submit" wire:loading.remove class="submit-button">Add Comment</button>
 
-                    <div wire:loading class="p-2 bg-yellow-100 border border-yellow-300 text-yellow-800 rounded-lg">
-                        Your request is being processed. Please wait a moment...
-                    </div>
+                        <div wire:loading class="p-2 bg-yellow-100 border border-yellow-300 text-yellow-800 rounded-lg">
+                            Your request is being processed. Please wait a moment...
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -161,4 +163,5 @@
             background-color: #028d59;
         }
     </style>
+
 </div>

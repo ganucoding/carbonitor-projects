@@ -7,7 +7,7 @@
             <small>ID: {{ $project->unique_id }} | Region: {{ $project->country?->name }}</small>
         </div>
 
-        @livewire('public.projects.comments-section-livewire', ['project' => $project])
+        @livewire('public.projects.comments-section-livewire', compact('project'))
     </div>
 
     <style>
