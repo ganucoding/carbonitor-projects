@@ -98,6 +98,13 @@ class IssuancesRelationManager extends RelationManager
                     ->default(false)
                     ->inline(),
 
+                // Attributes field as a checkbox
+                Checkbox::make('attributes_emission_reduction')
+                    ->label('Attributes (Emission Reduction)')
+                    ->helperText('Check this box if the project is eligible for Emission Reduction.') // Help text
+                    ->default(false)
+                    ->inline(),
+
                 // History field
                 Forms\Components\Textarea::make('history')
                     ->label('History')

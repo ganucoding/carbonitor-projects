@@ -55,6 +55,14 @@
                 <hr />
             @endif
 
+            @if ($issuance->attributes_emission_reduction)
+                <div class="eligibilities">
+                    <h5>Attributes (Emission Reduction)</h5>
+                    Yes
+                </div>
+                <hr />
+            @endif
+
             <div class="history">
                 <h5>History</h5>
                 <ul>

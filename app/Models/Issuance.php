@@ -22,6 +22,7 @@ class Issuance extends Model
         'monitoring_period_start',
         'monitoring_period_end',
         'eligibilities_corsia_pilot_phase',
+        'attributes_emission_reduction',
         'history',
     ];
 
