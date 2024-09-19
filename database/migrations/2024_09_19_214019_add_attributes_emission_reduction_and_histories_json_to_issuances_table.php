@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('issuances', function (Blueprint $table) {
             $table->boolean('attributes_emission_reduction')->nullable();
-            $table->json('histories_json')->nullable(); // to store 3 columns/fields => credits, symbol & description
+            $table->json('histories_json')->nullable(); // to store 3 columns/fields => credits, symbol & details
         });
     }
 

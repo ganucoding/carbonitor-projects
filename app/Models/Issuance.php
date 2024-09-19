@@ -24,6 +24,11 @@ class Issuance extends Model
         'eligibilities_corsia_pilot_phase',
         'attributes_emission_reduction',
         'history',
+        'histories_json',
+    ];
+
+    protected $casts = [
+        'histories_json' => 'array',
     ];
 
     protected $dates = [

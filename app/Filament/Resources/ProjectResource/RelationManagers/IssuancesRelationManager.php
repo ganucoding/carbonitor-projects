@@ -5,7 +5,9 @@ namespace App\Filament\Resources\ProjectResource\RelationManagers;
 use Filament\Forms;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -105,12 +107,31 @@ class IssuancesRelationManager extends RelationManager
                     ->default(false)
                     ->inline(),
 
-                // History field
-                Forms\Components\Textarea::make('history')
+                // Histories JSON field (using Filament's Repeater)
+                Repeater::make('histories_json')
+                    ->label(__('Histories'))
+                    ->schema([
+                        TextInput::make('credits')
+                            ->label(__('Credits'))
+                            ->columnSpan(3), // 3 parts
+                        TextInput::make('symbol')
+                            ->label(__('Symbol'))
+                            ->columnSpan(1), // 1 part
+                        Textarea::make('details')
+                            ->label(__('Details'))
+                            ->rows(1)
+                            ->autosize()
+                            ->columnSpan(5), // 5 parts
+                    ])
+                    ->columns(9) // Total parts (2 + 1 + 3)
+                    ->columnSpanFull(),
+
+                /* // History field
+                Textarea::make('history')
                     ->label('History')
                     ->nullable()
                     ->rows(4)
-                    ->placeholder('Enter any relevant history'),
+                    ->placeholder('Enter any relevant history'), */
             ]);
     }
 

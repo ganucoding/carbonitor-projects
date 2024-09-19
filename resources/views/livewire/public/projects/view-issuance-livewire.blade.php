@@ -56,19 +56,33 @@
             @endif
 
             @if ($issuance->attributes_emission_reduction)
-                <div class="eligibilities">
+                <div class="attributes">
                     <h5>Attributes (Emission Reduction)</h5>
                     Yes
                 </div>
                 <hr />
             @endif
 
-            <div class="history">
+            <div class="histories-table">
                 <h5>History</h5>
-                <ul>
-                    {!! nl2br(e($issuance->history ?? 'No History Available')) !!}
-                </ul>
+                <table class="invisible-table">
+                    <tbody>
+                        @foreach ($issuance->histories_json ?? [] as $history)
+                            <tr>
+                                <td class="col-credits">{{ $history['credits'] ?? 'N/A' }}</td>
+                                <td class="col-symbol">{{ $history['symbol'] ?? 'N/A' }}</td>
+                                <td class="col-details">{{ $history['details'] ?? 'N/A' }}</td>
+                            </tr>
+                        @endforeach
+                        @if (empty($issuance->histories_json))
+                            <tr>
+                                <td colspan="3" class="text-center">No Histories Available</td>
+                            </tr>
+                        @endif
+                    </tbody>
+                </table>
             </div>
+
         </div>
     </body>
 
@@ -99,22 +113,35 @@
             margin: 20px 0;
         }
 
-        .eligibilities {
+        .eligibilities,
+        .attributes,
+        .histories-table {
             margin-top: 20px;
         }
 
-        .history {
-            margin-top: 20px;
+        .invisible-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
         }
 
-        .history ul {
-            list-style: none;
-            padding: 0;
+        .invisible-table td {
+            padding: 8px;
         }
 
-        .history ul li {
-            margin-bottom: 10px;
-            font-weight: 500;
+        .col-credits {
+            width: 30%;
+            /* Adjusted ratio */
+        }
+
+        .col-symbol {
+            width: 10%;
+            /* Adjusted ratio */
+        }
+
+        .col-details {
+            width: 60%;
+            /* Adjusted ratio */
         }
 
         @media (max-width: 768px) {
