@@ -215,9 +215,14 @@ class ProjectResource extends Resource
                     ->wrap()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('name')
+                    ->formatStateUsing(
+                        fn($record) =>
+                        "{$record->name}<br><span style='font-size: smaller; color: #555555;'>by {$record->projectDetail?->project_developer}</span>"
+                    )
                     ->searchable()
                     ->wrap()
-                    ->sortable(),
+                    ->sortable()
+                    ->html(), // Enable HTML rendering
                 Tables\Columns\TextColumn::make('projectStatus.name')
                     ->searchable()
                     ->wrap()
