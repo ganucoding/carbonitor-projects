@@ -38,9 +38,14 @@ class ProjectsListingLivewire extends Component implements HasForms, HasTable
                     ->wrap()
                     ->sortable(),
                 TextColumn::make('name')
+                    ->formatStateUsing(
+                        fn($record) =>
+                        "{$record->name}<br><span style='font-size: smaller; color: #555555;'>by {$record->projectDetail?->project_developer}</span>"
+                    )
                     ->searchable()
                     ->wrap()
-                    ->sortable(),
+                    ->sortable()
+                    ->html(), // Enable HTML rendering
                 TextColumn::make('projectStatus.name')
                     ->searchable()
                     ->wrap()
