@@ -123,6 +123,14 @@ class ProjectResource extends Resource
                         ->maxLength(255)
                         ->columnSpan(1),
 
+                    Textarea::make('project_validator')
+                        ->label(__('Project Validator'))
+                        ->nullable()
+                        ->rows(1)
+                        ->autosize()
+                        ->maxLength(255)
+                        ->columnSpan(1),
+
                     Textarea::make('methodology')
                         ->label(__('Methodology'))
                         ->nullable()

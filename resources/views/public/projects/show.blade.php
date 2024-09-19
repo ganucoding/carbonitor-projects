@@ -189,6 +189,10 @@
                                         <td>{{ $project->projectDetail?->project_developer }}</td>
                                     </tr>
                                     <tr>
+                                        <th>Project Validator</th>
+                                        <td>{{ $project->projectDetail?->project_validator }}</td>
+                                    </tr>
+                                    <tr>
                                         <th>Methodology</th>
                                         <td>{!! nl2br(e($project->projectDetail?->methodology)) !!}</td>
                                     </tr>

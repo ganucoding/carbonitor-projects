@@ -12,6 +12,7 @@ class ProjectDetail extends Model
     protected $fillable = [
         'project_id',
         'project_developer',
+        'project_validator',
         'methodology',
         'standards_version',
         'project_scale',
