@@ -287,7 +287,15 @@
                             Sources
                         </div>
                         <div class="card-body">
-                            <p>{!! nl2br(e($project->projectDetail->sources)) !!}</p>
+                            <p>
+                                {!! nl2br(
+                                    preg_replace(
+                                        '/\bhttps?:\/\/\S+/i',
+                                        '<a href="$0" target="_blank" rel="noopener noreferrer">$0</a>',
+                                        $project->projectDetail->sources,
+                                    ),
+                                ) !!}
+                            </p>
                         </div>
                     </div>
                 @endif
