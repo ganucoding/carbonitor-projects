@@ -24,6 +24,7 @@ class ProjectDetail extends Model
         'description',
         'summary',
         'sources',
+        'sources_label',
         'google_maps_embed_code',
         'compliance',
     ];

@@ -201,19 +201,33 @@ class ProjectResource extends Resource
                         ->autosize()
                         ->columnSpan(1),
 
-                    Textarea::make('sources')
-                        ->label(__('Sources'))
-                        ->nullable()
-                        ->rows(1)
-                        ->autosize()
-                        ->columnSpan(1),
-
                     // Compliance field as a checkbox
                     Checkbox::make('compliance')
                         ->label('Compliance')
                         ->helperText('Check this box if the project adheres to compliance requirements.') // Help text
                         ->default(false)
                         ->inline()
+                        ->columnSpan(1),
+
+                    Section::make()
+                        ->heading(__('Sources'))
+                        ->schema([
+                            Textarea::make('sources_label')
+                                ->label(__('Label'))
+                                ->nullable()
+                                ->rows(1)
+                                ->autosize()
+                                ->columnSpan(1)
+                                ->helperText(__('This label ("VLS", "GLD", etc.) will be visible to users. When clicked, it will redirect them to the provided link below.')),
+
+                            Textarea::make('sources')
+                                ->label(__('Link'))
+                                ->nullable()
+                                ->rows(1)
+                                ->autosize()
+                                ->columnSpan(1)
+                                ->helperText(__('Enter the URL where users will be redirected when they click the label.')),
+                        ])
                         ->columnSpan(1),
                 ])->columns(2),
         ];

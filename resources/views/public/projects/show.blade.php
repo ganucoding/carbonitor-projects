@@ -285,20 +285,17 @@
                     </div>
                 @endif
 
-                @if ($project->projectDetail?->sources)
+                @if ($project->projectDetail?->sources_label && $project->projectDetail?->sources)
                     <div class="card">
                         <div class="card-header">
                             Sources
                         </div>
                         <div class="card-body">
                             <p>
-                                {!! nl2br(
-                                    preg_replace(
-                                        '/\bhttps?:\/\/\S+/i',
-                                        '<a href="$0" target="_blank" rel="noopener noreferrer">$0</a>',
-                                        $project->projectDetail->sources,
-                                    ),
-                                ) !!}
+                                <a href="{{ $project->projectDetail->sources }}" target="_blank"
+                                    rel="noopener noreferrer" style="color: blue;">
+                                    {{ $project->projectDetail->sources_label }}
+                                </a>
                             </p>
                         </div>
                     </div>
