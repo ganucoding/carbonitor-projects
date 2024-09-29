@@ -259,38 +259,48 @@
             </div>
 
             <div class="col-md-4">
-                <div class="card mb-3">
-                    <div class="card-header">
-                        Description
+                @if ($project->projectDetail?->description)
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            Description
+                        </div>
+                        <div class="card-body">
+                            <p>{!! nl2br(e($project->projectDetail->description)) !!}</p>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <p>{!! nl2br(e($project->projectDetail?->description)) !!}</p>
+                @endif
+
+                @if ($project->projectDetail?->summary)
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            Summary
+                        </div>
+                        <div class="card-body">
+                            <p>{!! nl2br(e($project->projectDetail->summary)) !!}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="card mb-3">
-                    <div class="card-header">
-                        Summary
+                @endif
+
+                @if ($project->projectDetail?->sources)
+                    <div class="card">
+                        <div class="card-header">
+                            Sources
+                        </div>
+                        <div class="card-body">
+                            <p>{!! nl2br(e($project->projectDetail->sources)) !!}</p>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <p>{!! nl2br(e($project->projectDetail?->summary)) !!}</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        Sources
-                    </div>
-                    <div class="card-body">
-                        <p>{!! nl2br(e($project->projectDetail?->sources)) !!}</p>
-                    </div>
-                </div>
+                @endif
             </div>
         </div>
 
         <div class="mt-4">
-            <h5>Location</h5>
-            <div class="map-container">
-                {!! $project->projectDetail?->google_maps_embed_code !!}
-            </div>
+            @if ($project->projectDetail?->google_maps_embed_code)
+                <h5>Location</h5>
+                <div class="map-container">
+                    {!! $project->projectDetail->google_maps_embed_code !!}
+                </div>
+            @endif
         </div>
 
         <div class="table-responsive mt-4">
