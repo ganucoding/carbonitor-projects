@@ -69,9 +69,9 @@
                     <tbody>
                         @foreach ($issuance->histories_json ?? [] as $history)
                             <tr>
-                                <td class="col-credits">{{ $history['credits'] ?? 'N/A' }}</td>
-                                <td class="col-symbol">{{ $history['symbol'] ?? 'N/A' }}</td>
-                                <td class="col-details">{{ $history['details'] ?? 'N/A' }}</td>
+                                <td class="col-credits">{{ $history['credits'] ?? '' }}</td>
+                                <td class="col-symbol">{{ $history['symbol'] ?? '' }}</td>
+                                <td class="col-details">{{ $history['details'] ?? '' }}</td>
                             </tr>
                         @endforeach
                         @if (empty($issuance->histories_json))
