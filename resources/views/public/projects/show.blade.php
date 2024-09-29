@@ -184,55 +184,73 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <table class="table">
-                                    <tr>
-                                        <th>Project Developer</th>
-                                        <td>{{ $project->projectDetail?->project_developer }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Project Validator</th>
-                                        <td>{{ $project->projectDetail?->project_validator }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Methodology</th>
-                                        <td>{!! nl2br(e($project->projectDetail?->methodology)) !!}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Standards Version</th>
-                                        <td>{{ $project->projectDetail?->standards_version }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Project Scale</th>
-                                        <td>{{ $project->projectDetail?->project_scale }}</td>
-                                    </tr>
+                                    @if ($project->projectDetail?->project_developer)
+                                        <tr>
+                                            <th>Project Developer</th>
+                                            <td>{{ $project->projectDetail->project_developer }}</td>
+                                        </tr>
+                                    @endif
+                                    @if ($project->projectDetail?->project_validator)
+                                        <tr>
+                                            <th>Project Validator</th>
+                                            <td>{{ $project->projectDetail->project_validator }}</td>
+                                        </tr>
+                                    @endif
+                                    @if ($project->projectDetail?->methodology)
+                                        <tr>
+                                            <th>Methodology</th>
+                                            <td>{!! nl2br(e($project->projectDetail->methodology)) !!}</td>
+                                        </tr>
+                                    @endif
+                                    @if ($project->projectDetail?->standards_version)
+                                        <tr>
+                                            <th>Standards Version</th>
+                                            <td>{{ $project->projectDetail->standards_version }}</td>
+                                        </tr>
+                                    @endif
+                                    @if ($project->projectDetail?->project_scale)
+                                        <tr>
+                                            <th>Project Scale</th>
+                                            <td>{{ $project->projectDetail->project_scale }}</td>
+                                        </tr>
+                                    @endif
                                 </table>
                             </div>
                             <div class="col-md-6">
                                 <table class="table">
-                                    <tr>
-                                        <th>Product</th>
-                                        <td>{{ $project->projectDetail?->product }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Crediting Period</th>
-                                        <td>
-                                            {{ \Carbon\Carbon::parse($project->projectDetail?->crediting_period_start)->format('M d, Y') }}
-                                            ―
-                                            {{ \Carbon\Carbon::parse($project->projectDetail?->crediting_period_end)->format('M d, Y') }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Annual Estimated Credits</th>
-                                        <td>
-                                            {{ number_format($project->projectDetail?->annual_estimated_credits) }}
-                                            @if ($project->projectDetail?->metric)
-                                                ({{ $project->projectDetail->metric->name }})
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Project Type</th>
-                                        <td>{{ $project->projectType?->name }}</td>
-                                    </tr>
+                                    @if ($project->projectDetail?->product)
+                                        <tr>
+                                            <th>Product</th>
+                                            <td>{{ $project->projectDetail->product }}</td>
+                                        </tr>
+                                    @endif
+                                    @if ($project->projectDetail?->crediting_period_start && $project->projectDetail?->crediting_period_end)
+                                        <tr>
+                                            <th>Crediting Period</th>
+                                            <td>
+                                                {{ \Carbon\Carbon::parse($project->projectDetail->crediting_period_start)->format('M d, Y') }}
+                                                ―
+                                                {{ \Carbon\Carbon::parse($project->projectDetail->crediting_period_end)->format('M d, Y') }}
+                                            </td>
+                                        </tr>
+                                    @endif
+                                    @if ($project->projectDetail?->annual_estimated_credits)
+                                        <tr>
+                                            <th>Annual Estimated Credits</th>
+                                            <td>
+                                                {{ number_format($project->projectDetail->annual_estimated_credits) }}
+                                                @if ($project->projectDetail->metric)
+                                                    ({{ $project->projectDetail->metric->name }})
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endif
+                                    @if ($project->projectType?->name)
+                                        <tr>
+                                            <th>Project Type</th>
+                                            <td>{{ $project->projectType->name }}</td>
+                                        </tr>
+                                    @endif
                                 </table>
                             </div>
                         </div>
