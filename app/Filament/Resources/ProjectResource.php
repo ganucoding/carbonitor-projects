@@ -9,6 +9,7 @@ use App\Filament\Resources\ProjectResource\RelationManagers\IssuancesRelationMan
 use App\Filament\Resources\ProjectResource\RelationManagers\RetirementsRelationManager;
 use App\Models\Project;
 use Filament\Forms;
+use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
@@ -205,6 +206,14 @@ class ProjectResource extends Resource
                         ->nullable()
                         ->rows(1)
                         ->autosize()
+                        ->columnSpan(1),
+
+                    // Compliance field as a checkbox
+                    Checkbox::make('compliance')
+                        ->label('Compliance')
+                        ->helperText('Check this box if the project adheres to compliance requirements.') // Help text
+                        ->default(false)
+                        ->inline()
                         ->columnSpan(1),
                 ])->columns(2),
         ];

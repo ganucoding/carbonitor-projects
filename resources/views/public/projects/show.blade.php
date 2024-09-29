@@ -251,6 +251,10 @@
                                             <td>{{ $project->projectType->name }}</td>
                                         </tr>
                                     @endif
+                                    <tr>
+                                        <th>Compliance</th>
+                                        <td>{{ $project->projectDetail?->compliance ? 'Yes' : 'No' }}</td>
+                                    </tr>
                                 </table>
                             </div>
                         </div>
