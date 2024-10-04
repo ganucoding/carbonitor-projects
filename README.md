@@ -23,19 +23,11 @@ Are you passionate about preserving our planet's environment while ensuring that
 
 ## Learning More
 
-To understand how our system works and how you can get involved, check out our [documentation](link-to-your-documentation).
-
-## Contributing
-
-We welcome contributions to enhance our project! Please refer to our [contribution guidelines](link-to-contribution-guidelines).
-
-## Code of Conduct
-
-We strive to maintain a welcoming community. Please review our [Code of Conduct](link-to-code-of-conduct).
+To understand how our system works and how you can get involved, check out our [documentation](https://carbonitor.com/).
 
 ## Security Vulnerabilities
 
-If you discover any security vulnerabilities within this project, please contact us at [your-email@example.com](mailto:your-email@example.com). We will address all reported issues promptly.
+If you discover any security vulnerabilities within this project, please contact us at [carbonitor@proton.me](mailto:carbonitor@proton.me). We will address all reported issues promptly.
 
 ## License
 
