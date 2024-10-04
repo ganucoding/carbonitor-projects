@@ -8,7 +8,7 @@ If you care about protecting our planet and want to ensure that funds for climat
 -   **Our Objectives**: Discover our goals in promoting transparency in carbon offset projects.
 -   **Our Projects**: Explore the various projects we are involved in.
 -   **Our Team**: Meet the dedicated individuals working behind the scenes.
--   **Resources**: Access valuable information and tools related to carbon offset initiatives.
+-   **Resources**: Access our open-source code on GitHub.
 -   **Contact**: Get in touch with us for inquiries or collaborations.
 
 ## Access
