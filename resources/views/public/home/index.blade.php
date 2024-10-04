@@ -146,8 +146,8 @@
                             </a>
                         </li>
                         <li class="nav-item pb-1 dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="javascript:void(0);" id="resourcesDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa-solid fa-folder-open p-2"></i>Resources
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="resourcesDropdown">
