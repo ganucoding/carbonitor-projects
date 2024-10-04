@@ -119,8 +119,9 @@
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><a class="navbar-brand" href="#"><span
-                                class="text-main">Carbon</span>itor</a></h5>
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+                        <a class="navbar-brand" href="#"><span class="text-main">Carbon</span>itor</a>
+                    </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
@@ -147,7 +148,7 @@
                         </li>
                         <li class="nav-item pb-1 dropdown">
                             <a class="nav-link dropdown-toggle" href="javascript:void(0);" id="resourcesDropdown"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                role="button" aria-expanded="false">
                                 <i class="fa-solid fa-folder-open p-2"></i>Resources
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="resourcesDropdown">
@@ -166,6 +167,30 @@
             </div>
         </div>
     </nav>
+
+    {{-- This script automatically opens the dropdown on mobile devices --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const offcanvasElement = document.getElementById('offcanvasNavbar'); // ID of your offcanvas
+            const resourcesDropdownMenu = document.querySelector('#resourcesDropdown + .dropdown-menu');
+
+            // Function to open dropdown when offcanvas is shown
+            offcanvasElement.addEventListener('shown.bs.offcanvas', function() {
+                if (window.innerWidth < 768) { // Check if on mobile
+                    resourcesDropdownMenu.classList.add('show'); // Show the dropdown
+                    const resourcesLink = document.getElementById('resourcesDropdown');
+                    resourcesLink.setAttribute('aria-expanded', 'true'); // Update aria attribute
+                }
+            });
+
+            // Optionally, hide the dropdown when the offcanvas is closed
+            offcanvasElement.addEventListener('hidden.bs.offcanvas', function() {
+                resourcesDropdownMenu.classList.remove('show'); // Hide the dropdown
+                const resourcesLink = document.getElementById('resourcesDropdown');
+                resourcesLink.setAttribute('aria-expanded', 'false'); // Update aria attribute
+            });
+        });
+    </script>
 
     <!-- about section starts -->
     <section id="about" class="about section-padding">
