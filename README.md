@@ -19,10 +19,6 @@ You can access the platform publicly at [carbonitor.com](https://carbonitor.com)
 
 This project is open source! You can run this application on your own if you have a Laravel setup along with PHP 8.3 or higher.
 
-## Learning More
-
-To understand how our system works and how you can get involved, check out our [documentation](https://carbonitor.com/).
-
 ## Security Vulnerabilities
 
 If you discover any security vulnerabilities within this project, please contact us at [carbonitor@proton.me](mailto:carbonitor@proton.me). We will address all reported issues promptly.
