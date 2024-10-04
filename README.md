@@ -1,18 +1,8 @@
-@ -1,66 +1,40 @@
-
-<p align="center">
-    <img src="img/carbonitor/carbonitor-icon-old.svg" width="400" alt="Carbonitor Logo">
-</p>
-
-<p align="center">
-    <a href="https://github.com/ganucoding/carbonitor-projects"><img src="img/carbonitor/carbonitor-icon-old.svg" alt="Carbonitor (GitHub)"></a>
-</p>
-
 ## Empowering Transparency in Carbon Offset Projects
 
-Are you passionate about preserving our planet's environment while ensuring that funds allocated for climate initiatives are used effectively and ethically? You're in the right place! Our cutting-edge information system is specifically designed to prevent and combat corruption in carbon offset projects, empowering stakeholders with transparency and accountability.
+If you care about protecting our planet and want to ensure that funds for climate initiatives are used effectively and ethically, you've come to the right place. Our innovative information system is designed to prevent and address corruption in carbon offset projects, providing stakeholders with enhanced transparency and accountability.
 
-### Features
+## Features
 
 -   **Home**: Learn more about our mission and vision.
 -   **Our Objectives**: Discover our goals in promoting transparency in carbon offset projects.
@@ -20,6 +10,14 @@ Are you passionate about preserving our planet's environment while ensuring that
 -   **Our Team**: Meet the dedicated individuals working behind the scenes.
 -   **Resources**: Access valuable information and tools related to carbon offset initiatives.
 -   **Contact**: Get in touch with us for inquiries or collaborations.
+
+## Access
+
+You can access the platform publicly at [carbonitor.com](https://carbonitor.com).
+
+## Open Source
+
+This project is open source! You can run this application on your own if you have a Laravel setup along with PHP 8.3 or higher.
 
 ## Learning More
 
