@@ -91,6 +91,10 @@
             /* Green color for social icons */
         }
 
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
         /* Responsive adjustments */
         @media (max-width: 767.98px) {
             #teamCarousel .carousel-item {
@@ -140,6 +144,17 @@
                             <a class="nav-link" href="#team">
                                 <i class="fa-solid fa-people-group p-2"></i>Our Team
                             </a>
+                        </li>
+                        <li class="nav-item pb-1 dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-folder-open p-2"></i>Resources
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="resourcesDropdown">
+                                <li><a class="dropdown-item"
+                                        href="https://github.com/ganucoding/carbonitor-projects">Codes</a></li>
+                                {{-- <li><a class="dropdown-item" href="/more">More</a></li> --}}
+                            </ul>
                         </li>
                         <li class="nav-item pb-1">
                             <a class="nav-link" href="#contact">
