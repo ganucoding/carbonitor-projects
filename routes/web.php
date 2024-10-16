@@ -6,6 +6,7 @@ use App\Livewire\Public\Projects\CommentsSectionLivewire;
 use App\Livewire\Public\Projects\ProjectsListingLivewire;
 use App\Livewire\Public\Projects\ViewCertificationDocumentsLivewire;
 use App\Livewire\Public\Projects\ViewIssuanceLivewire;
+use App\Livewire\Public\Projects\ViewProjectLivewire;
 use App\Livewire\Public\Projects\ViewRetirementLivewire;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/about', [HomeController::class, 'about'])->name('home.about');
 Route::get('/projects/learn-more', [HomeController::class, 'projectsLearnMore'])->name('home.projects.learn-more');
 Route::resource('projects', ProjectController::class)->only('show');
+Route::get('/projects/view/{unique_id}', ViewProjectLivewire::class)->name('projects.viewProjectLivewire');
 
 /* Livewire */
 Route::get('/projects-listing', ProjectsListingLivewire::class)->name('projects.projectsListingLivewire');

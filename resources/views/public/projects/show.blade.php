@@ -172,6 +172,11 @@
         <div class="project-header">
             <h2>{{ $project->name }}</h2>
             <small>ID: {{ $project->unique_id }} | Region: {{ $project->country?->name }}</small>
+            <div class="flex justify-center">
+                <p class="text-sm font-mono text-white cursor-text mt-3 w-fit">
+                    {{ url('projects/view/' . $project->unique_id) }}
+                </p>
+            </div>
         </div>
 
         <div class="row">
