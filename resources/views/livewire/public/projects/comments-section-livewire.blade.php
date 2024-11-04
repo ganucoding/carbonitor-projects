@@ -8,9 +8,11 @@
                     <h2 class="section-title">Latest Comments</h2>
                     @foreach ($comments as $comment)
                         <div class="comment-card">
-                            <p class="comment-header">{{ $comment->username }} ({{ $comment->email }})</p>
+                            <div class="comment-header-container">
+                                <p class="comment-header">{{ $comment->username }}</p>
+                                <p class="comment-date">{{ $comment->created_at->diffForHumans() }}</p>
+                            </div>
                             <p class="comment-text">{!! nl2br(e($comment->comment)) !!}</p>
-                            <p class="comment-date">Posted on {{ $comment->created_at->format('d M Y, H:i') }}</p>
                         </div>
                     @endforeach
                 </div>
@@ -97,21 +99,25 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
+        .comment-header-container {
+            display: flex;
+        }
+
         .comment-header {
-            margin: 0 0 5px;
+            margin-right: 10px;
             font-weight: bold;
             color: #555;
+        }
+
+        .comment-date {
+            margin: 3px;
+            font-size: 12px;
+            color: #999;
         }
 
         .comment-text {
             margin: 0 0 10px;
             color: #666;
-        }
-
-        .comment-date {
-            margin: 0;
-            font-size: 12px;
-            color: #999;
         }
 
         .form-group {
