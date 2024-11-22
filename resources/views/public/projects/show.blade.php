@@ -271,7 +271,7 @@
                 @if ($project->projectDetail?->description)
                     <div class="card mb-3">
                         <div class="card-header">
-                            Descriptionz
+                            Description
                         </div>
                         <div class="card-body">
                             <p>{!! nl2br(e($project->projectDetail->description)) !!}</p>
