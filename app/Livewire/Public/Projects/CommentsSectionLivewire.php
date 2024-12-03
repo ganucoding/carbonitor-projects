@@ -4,6 +4,8 @@ namespace App\Livewire\Public\Projects;
 
 use App\Filament\Resources\CommentResource;
 use App\Mail\CommentSubmitted;
+use App\Mail\NotifyAdminCommentSubmitted;
+use App\Models\EmailToBeNotified;
 use Livewire\Component;
 use App\Models\Project;
 use App\Models\User;
@@ -60,6 +62,7 @@ class CommentsSectionLivewire extends Component
 
             // Notify each user
             foreach ($approvedUsers as $recipient) {
+                // Send notification to admin (database)
                 Notification::make()
                     ->title('Comment Submitted')
                     ->success()
@@ -76,6 +79,12 @@ class CommentsSectionLivewire extends Component
                             ->markAsRead(),
                     ])
                     ->sendToDatabase($recipient);
+
+                // Send notification to admin (email)
+                $activeEmails = EmailToBeNotified::isActive()->pluck('email');
+                $activeEmails->each(function ($email) use ($comment) {
+                    Mail::to($email)->send(new NotifyAdminCommentSubmitted($comment)); // Iterate over the collection and send the email to each one
+                });
             }
 
             // Send email to commenter's email
